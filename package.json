@@ -7,8 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --write --config ./.prettierrc src/**/*{.ts,.js,.json,.scss,.html}",
-    "lint": "ng lint"
+    "format:test": "prettier \"src/**/*.{ts,html,md,scss,json}\" --list-different",
+    "format:write": "prettier \"src/**/*.{ts,html,md,scss,json}\" --write",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "npm run format:write && eslint . --ext .ts --fix"
   },
   "private": true,
   "dependencies": {
