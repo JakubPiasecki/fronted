@@ -1,0 +1,26 @@
+<h2>{{ employee1.name | uppercase }} Details</h2>
+<div><span>ID: </span>{{ employee1.id }}</div>
+<div>
+  <ul style="list-style: none">
+    <li>
+      <label for="name">Employee name: </label>
+      <input id="name" [(ngModel)]="employee1.name" placeholder="name" />
+    </li>
+    <li>
+      <label for="name">Employee surname: </label>
+      <input id="surname" [(ngModel)]="employee1.surname" placeholder="surname" />
+    </li>
+    <li>
+      <label for="name">Employee skills: </label>
+      <input id="skills" [(ngModel)]="employee1.skills" placeholder="skill" />
+    </li>
+    <li>
+      <label for="name">Employee hireDate: </label>
+      <input type='date' id="hireDate" [(ngModel)]="employee1.hireDate" placeholder="hireDate" />
+    </li>
+    <li>
+      <label for="name">Employee manager: </label>
+      <input id="manager" [(ngModel)]="employee1.manager" placeholder="manager" />
+    </li>
+  </ul>
+</div>
