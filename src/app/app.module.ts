@@ -9,7 +9,6 @@ import { EmployeesComponent } from './employees/employees.component';
   declarations: [AppComponent, EmployeesComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
