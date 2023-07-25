@@ -8,7 +8,7 @@ import { Employee } from '../employee';
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent {
-  employees = EMPLOYEES;
+  employees: Employee[] = EMPLOYEES;
   selectedEmployee?: Employee;
 
   onSelect(employee: Employee): void {
