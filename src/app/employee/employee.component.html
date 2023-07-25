@@ -14,7 +14,7 @@
 <div *ngIf="selectedEmployee">
   <h2>{{ selectedEmployee.name | uppercase }} Details</h2>
   <div>id: {{ selectedEmployee.id }}</div>
-  <ul style="list-style: none">
+  <ul>
     <li>
       <label for="name">Employee name: </label>
       <input id="name" [(ngModel)]="selectedEmployee.name" placeholder="name" />
