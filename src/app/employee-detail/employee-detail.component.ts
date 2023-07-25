@@ -4,8 +4,8 @@ import { Employee } from '../employee';
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  styleUrls: ['./employee-detail.component.scss']
+  styleUrls: ['./employee-detail.component.scss'],
 })
 export class EmployeeDetailComponent {
-@Input() employee?: Employee;
+  @Input() employee?: Employee;
 }
