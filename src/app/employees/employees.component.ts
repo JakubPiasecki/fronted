@@ -4,10 +4,10 @@ import { Employee } from '../employee';
 
 @Component({
   selector: 'app-employees',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss'],
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.scss'],
 })
-export class EmployeeComponent {
+export class EmployeesComponent {
   employees: Employee[] = EMPLOYEES;
   selectedEmployee?: Employee;
 
