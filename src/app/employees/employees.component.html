@@ -1,39 +1,14 @@
-<ul class="employee">
-  <li *ngFor="let employee of employees" class="employee__item">
+<ul class="employees">
+  <li *ngFor="let employee of employees" class="employees__item">
     <button
-      class="employee__button"
-      [ngClass]="{ 'employee__button--selected': selectedEmployee === employee }"
+      class="employees__button"
+      [ngClass]="{ 'employees__button--selected': selectedEmployee === employee }"
       (click)="onSelect(employee)"
     >
-      <span class="employee__id">{{ employee.id }}</span>
-      <span class="employee__name">{{ employee.name }}</span>
+      <span class="employees__id">{{ employee.id }}</span>
+      <span class="employees__name">{{ employee.name }}</span>
     </button>
   </li>
 </ul>
 
-<div *ngIf="selectedEmployee">
-  <h2>{{ selectedEmployee.name | uppercase }} Details</h2>
-  <div>id: {{ selectedEmployee.id }}</div>
-  <ul>
-    <li>
-      <label for="name">Employee name: </label>
-      <input id="name" [(ngModel)]="selectedEmployee.name" placeholder="name" />
-    </li>
-    <li>
-      <label for="name">Employee surname: </label>
-      <input id="surname" [(ngModel)]="selectedEmployee.surname" placeholder="surname" />
-    </li>
-    <li>
-      <label for="name">Employee skills: </label>
-      <input id="skills" [(ngModel)]="selectedEmployee.skills" placeholder="skill" />
-    </li>
-    <li>
-      <label for="name">Employee hireDate: </label>
-      <input type="date" id="hireDate" [(ngModel)]="selectedEmployee.hireDate" placeholder="hireDate" />
-    </li>
-    <li>
-      <label for="name">Employee manager: </label>
-      <input id="manager" [(ngModel)]="selectedEmployee.manager" placeholder="manager" />
-    </li>
-  </ul>
-</div>
+<app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
