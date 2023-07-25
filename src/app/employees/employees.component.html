@@ -1,26 +1,39 @@
-<h2>{{ employee1.name | uppercase }} Details</h2>
-<div><span>ID: </span>{{ employee1.id }}</div>
-<div>
-  <ul style="list-style: none">
+<ul class="employee">
+  <li *ngFor="let employee of employees" class="employee__item">
+    <button
+      class="employee__button"
+      [ngClass]="{ 'employee__button--selected': selectedEmployee === employee }"
+      (click)="onSelect(employee)"
+    >
+      <span class="employee__id">{{ employee.id }}</span>
+      <span class="employee__name">{{ employee.name }}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedEmployee">
+  <h2>{{ selectedEmployee.name | uppercase }} Details</h2>
+  <div>id: {{ selectedEmployee.id }}</div>
+  <ul>
     <li>
       <label for="name">Employee name: </label>
-      <input id="name" [(ngModel)]="employee1.name" placeholder="name" />
+      <input id="name" [(ngModel)]="selectedEmployee.name" placeholder="name" />
     </li>
     <li>
       <label for="name">Employee surname: </label>
-      <input id="surname" [(ngModel)]="employee1.surname" placeholder="surname" />
+      <input id="surname" [(ngModel)]="selectedEmployee.surname" placeholder="surname" />
     </li>
     <li>
       <label for="name">Employee skills: </label>
-      <input id="skills" [(ngModel)]="employee1.skills" placeholder="skill" />
+      <input id="skills" [(ngModel)]="selectedEmployee.skills" placeholder="skill" />
     </li>
     <li>
       <label for="name">Employee hireDate: </label>
-      <input type='date' id="hireDate" [(ngModel)]="employee1.hireDate" placeholder="hireDate" />
+      <input type="date" id="hireDate" [(ngModel)]="selectedEmployee.hireDate" placeholder="hireDate" />
     </li>
     <li>
       <label for="name">Employee manager: </label>
-      <input id="manager" [(ngModel)]="employee1.manager" placeholder="manager" />
+      <input id="manager" [(ngModel)]="selectedEmployee.manager" placeholder="manager" />
     </li>
   </ul>
 </div>

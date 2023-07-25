@@ -1,0 +1,28 @@
+@import "assets/colors";
+
+$h1-color: $app-color-black;
+
+$background-color-dark: $app-color-dark-gray;
+$background-color-light: $app-color-white;
+$background-color-hover: $app-color-black;
+$background-color-selected: $app-color-black;
+
+$text-color-light: $app-color-white;
+$text-color-selected: $app-color-white;
+
+$button-background-color: $app-color-white;
+$button-background-color-hover: $app-color-black;
+$button-background-color-disabled: $app-color-white;
+$button-color: $app-color-black;
+$button-color-hover: $app-color-white;
+$button-color-disabled: $app-color-gray;
+
+$button-border-radius: 4px;
+$button-font-size: 1.2rem;
+$button-padding: 1rem;
+$button-margin: 0.5rem;
+$button-height: 1.8rem;
+
+$padding-small: 0.8rem 0.7rem 0 0.7rem;
+$button-radius: 4px;
+$badge-radius: 4px;

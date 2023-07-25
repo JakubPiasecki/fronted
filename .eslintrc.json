@@ -42,8 +42,8 @@
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {
-        "@typescript-eslint/no-empty-function": "on",
-        "@angular-eslint/no-empty-lifecycle-method": "on",
+        "@typescript-eslint/no-empty-function": 2,
+        "@angular-eslint/no-empty-lifecycle-method": 2,
         "@angular-eslint/template/cyclomatic-complexity": [
           "warn",
           {
