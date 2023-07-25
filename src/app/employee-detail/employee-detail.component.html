@@ -1,26 +1,28 @@
 <div *ngIf="employee">
   <h2>{{ employee.name | uppercase }} Details</h2>
   <div>id: {{ employee.id }}</div>
-  <ul>
-    <li>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div>
       <label for="name">Employee name: </label>
-      <input id="name" [(ngModel)]="employee.name" placeholder="name" />
-    </li>
-    <li>
-      <label for="name">Employee surname: </label>
-      <input id="surname" [(ngModel)]="employee.surname" placeholder="surname" />
-    </li>
-    <li>
-      <label for="name">Employee skills: </label>
-      <input id="skills" [(ngModel)]="employee.skills" placeholder="skill" />
-    </li>
-    <li>
-      <label for="name">Employee hireDate: </label>
-      <input type="date" id="hireDate" [(ngModel)]="employee.hireDate" placeholder="hireDate" />
-    </li>
-    <li>
-      <label for="name">Employee manager: </label>
-      <input id="manager" [(ngModel)]="employee.manager" placeholder="manager" />
-    </li>
-  </ul>
+      <input id="name" formControlName="name" />
+    </div>
+    <div>
+      <label for="surname">Employee surname: </label>
+      <input id="surname" formControlName="surname" />
+    </div>
+    <div>
+      <label for="skills">Employee skills: </label>
+      <input id="skills" formControlName="skills" />
+    </div>
+    <div>
+      <label for="hireDate">Employee hireDate: </label>
+      <input type="date" id="hireDate" formControlName="hireDate" />
+    </div>
+    <div>
+      <label for="manager">Employee manager: </label>
+      <input id="manager" formControlName="manager" />
+    </div>
+    <button type="submit" [disabled]="employeeForm.invalid">Save</button>
+    <button (click)="onClose()">Close</button>
+  </form>
 </div>

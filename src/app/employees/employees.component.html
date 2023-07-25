@@ -11,4 +11,8 @@
   </li>
 </ul>
 
-<app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
+<ng-container *ngIf="!selectedEmployee">
+  <button class="add-employee-button" (click)="onAddEmployee()">Add Employee</button>
+</ng-container>
+
+<app-employee-detail [employee]="selectedEmployee" (employeeUpdated)="onEmployeeUpdated($event)" (closed)="onEmployeeDetailsClosed()"></app-employee-detail>
