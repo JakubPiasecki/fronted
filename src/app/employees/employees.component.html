@@ -3,7 +3,7 @@
     <button
       class="employees__button"
       [ngClass]="{ 'employees__button--selected': selectedEmployee === employee }"
-      (click)="onSelect(employee)"
+      (click)="selectedEmployee ? null : onSelect(employee)"
     >
       <span class="employees__id">{{ employee.id }}</span>
       <span class="employees__name">{{ employee.name }}</span>
@@ -15,4 +15,8 @@
   <button class="add-employee-button" (click)="onAddEmployee()">Add Employee</button>
 </ng-container>
 
-<app-employee-detail [employee]="selectedEmployee" (employeeUpdated)="onEmployeeUpdated($event)" (closed)="onEmployeeDetailsClosed()"></app-employee-detail>
+<app-employee-detail
+  [employee]="selectedEmployee"
+  (employeeUpdated)="onEmployeeUpdated($event)"
+  (closed)="onEmployeeDetailsClosed()"
+></app-employee-detail>
