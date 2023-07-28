@@ -1,7 +1,22 @@
+<div *ngIf="!isFormVisible">
+  <button (click)="onAddEmployee()">Add Employee</button>
+</div>
+
 <div *ngIf="employee">
-  <h2>{{ employee.name | uppercase }} Details</h2>
-  <div>id: {{ employee.id }}</div>
-  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="!isFormVisible">
+    <h2>{{ employee.name | uppercase }} Details</h2>
+    <div>id: {{ employee.id }}</div>
+    <div>Employee name: {{ employee.name }}</div>
+    <div>Employee surname: {{ employee.surname }}</div>
+    <div>Employee skills: {{ employee.skills.join(', ') }}</div>
+    <div>Employee hireDate: {{ employee.hireDate }}</div>
+    <div>Employee manager: {{ employee.manager }}</div>
+
+    <button (click)="onEdit()">Edit</button>
+    <button (click)="onClose()">Close</button>
+  </div>
+  <form *ngIf="isFormVisible" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div>id: {{ employee.id }}</div>
     <div>
       <label for="name">Employee name: </label>
       <input id="name" formControlName="name" />
@@ -12,7 +27,9 @@
     </div>
     <div>
       <label for="skills">Employee skills: </label>
-      <input id="skills" formControlName="skills" />
+      <select id="skills" formControlName="skills" multiple>
+        <option *ngFor="let skill of availableSkills" [value]="skill">{{ skill }}</option>
+      </select>
     </div>
     <div>
       <label for="hireDate">Employee hireDate: </label>
@@ -20,9 +37,14 @@
     </div>
     <div>
       <label for="manager">Employee manager: </label>
-      <input id="manager" formControlName="manager" />
+      <select id="manager" formControlName="manager">
+        <option *ngFor="let emp of employees" [value]="emp.id" [disabled]="emp.id === employee.id">
+          {{ emp.name }} {{ emp.surname }}
+        </option>
+      </select>
     </div>
     <button type="submit" [disabled]="employeeForm.invalid">Save</button>
-    <button (click)="onClose()">Close</button>
+    <button type="button" (click)="onReset()">Reset</button>
+    <button type="button" (click)="onClose()">Close</button>
   </form>
 </div>
