@@ -11,7 +11,6 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   @Input() employee?: Employee;
   @Input() employees: Employee[] = [];
   @Output() employeesUpdated = new EventEmitter<Employee[]>();
-  @Output() closed = new EventEmitter<void>();
   employeeForm!: FormGroup;
   isFormVisible = false;
   availableSkills = ['skill1', 'skill2', 'skill3'];
