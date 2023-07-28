@@ -1,9 +1,9 @@
-<div *ngIf="!isFormVisible">
-  <button (click)="onAddEmployee()">Add Employee</button>
+<div *ngIf='!isFormVisible && !employee'>
+  <button (click)='onAddEmployee()'>Add Employee</button>
 </div>
 
-<div *ngIf="employee">
-  <div *ngIf="!isFormVisible">
+<div *ngIf='employee'>
+  <div *ngIf='!isFormVisible'>
     <h2>{{ employee.name | uppercase }} Details</h2>
     <div>id: {{ employee.id }}</div>
     <div>Employee name: {{ employee.name }}</div>
@@ -12,39 +12,39 @@
     <div>Employee hireDate: {{ employee.hireDate }}</div>
     <div>Employee manager: {{ employee.manager }}</div>
 
-    <button (click)="onEdit()">Edit</button>
-    <button (click)="onClose()">Close</button>
+    <button (click)='onEdit()'>Edit</button>
+    <button (click)='onClose()'>Close</button>
   </div>
-  <form *ngIf="isFormVisible" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <form *ngIf='isFormVisible' [formGroup]='employeeForm' (ngSubmit)='onSubmit()'>
     <div>id: {{ employee.id }}</div>
     <div>
-      <label for="name">Employee name: </label>
-      <input id="name" formControlName="name" />
+      <label for='name'>Employee name: </label>
+      <input id='name' formControlName='name' />
     </div>
     <div>
-      <label for="surname">Employee surname: </label>
-      <input id="surname" formControlName="surname" />
+      <label for='surname'>Employee surname: </label>
+      <input id='surname' formControlName='surname' />
     </div>
     <div>
-      <label for="skills">Employee skills: </label>
-      <select id="skills" formControlName="skills" multiple>
-        <option *ngFor="let skill of availableSkills" [value]="skill">{{ skill }}</option>
+      <label for='skills'>Employee skills: </label>
+      <select id='skills' formControlName='skills' multiple>
+        <option *ngFor='let skill of availableSkills' [value]='skill'>{{ skill }}</option>
       </select>
     </div>
     <div>
-      <label for="hireDate">Employee hireDate: </label>
-      <input type="date" id="hireDate" formControlName="hireDate" />
+      <label for='hireDate'>Employee hireDate: </label>
+      <input type='date' id='hireDate' formControlName='hireDate' />
     </div>
     <div>
-      <label for="manager">Employee manager: </label>
-      <select id="manager" formControlName="manager">
-        <option *ngFor="let emp of employees" [value]="emp.id" [disabled]="emp.id === employee.id">
+      <label for='manager'>Employee manager: </label>
+      <select id='manager' formControlName='manager'>
+        <option *ngFor='let emp of employees' [value]='emp.id' [disabled]='emp.id === employee.id'>
           {{ emp.name }} {{ emp.surname }}
         </option>
       </select>
     </div>
-    <button type="submit" [disabled]="employeeForm.invalid">Save</button>
-    <button type="button" (click)="onReset()">Reset</button>
-    <button type="button" (click)="onClose()">Close</button>
+    <button type='submit' [disabled]='employeeForm.invalid'>Save</button>
+    <button type='button' (click)='onReset()'>Reset</button>
+    <button type='button' (click)='onClose()'>Close</button>
   </form>
 </div>
