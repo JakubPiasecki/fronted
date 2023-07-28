@@ -5,7 +5,7 @@ import { Employee } from '../employee';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.scss']
+  styleUrls: ['./employees.component.scss'],
 })
 export class EmployeesComponent {
   employees: Employee[] = EMPLOYEES;
@@ -20,5 +20,7 @@ export class EmployeesComponent {
     this.selectedEmployee = undefined;
   }
 
-
+  onEmployeeDetailsClosed(): void {
+    this.selectedEmployee = undefined;
+  }
 }

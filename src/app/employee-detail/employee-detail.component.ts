@@ -5,19 +5,20 @@ import { Employee } from '../employee';
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-detail.component.html',
-  styleUrls: ['./employee-detail.component.scss']
+  styleUrls: ['./employee-detail.component.scss'],
 })
 export class EmployeeDetailComponent implements OnInit, OnChanges {
   @Input() employee?: Employee;
   @Input() employees: Employee[] = [];
   @Output() employeesUpdated = new EventEmitter<Employee[]>();
+  @Output() closed = new EventEmitter<void>();
   employeeForm!: FormGroup;
   isFormVisible = false;
   availableSkills = ['skill1', 'skill2', 'skill3'];
   updatedEmployees: Employee[] = [];
   new = false;
-  constructor(private formBuilder: FormBuilder) {
-  }
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -36,7 +37,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
       surname: [this.employee?.surname || '', Validators.required],
       skills: [this.employee?.skills || [], Validators.required],
       hireDate: [this.employee?.hireDate || '', Validators.required],
-      manager: [this.employee?.manager || '', Validators.required]
+      manager: [this.employee?.manager || '', Validators.required],
     });
   }
 
@@ -44,18 +45,16 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     if (!this.new) {
       const updatedEmployee: Employee = {
         ...this.employee,
-        ...this.employeeForm.value
+        ...this.employeeForm.value,
       };
-      const updatedEmployees = this.employees.map(emp =>
-        emp.id === updatedEmployee.id ? updatedEmployee : emp
-      );
+      const updatedEmployees = this.employees.map((emp) => (emp.id === updatedEmployee.id ? updatedEmployee : emp));
       this.employeesUpdated.emit(updatedEmployees);
     } else {
       const updatedEmployee: Employee = {
         ...this.employee,
-        ...this.employeeForm.value
+        ...this.employeeForm.value,
       };
-      this.employeesUpdated.emit([...this.updatedEmployees,updatedEmployee]);
+      this.employeesUpdated.emit([...this.updatedEmployees, updatedEmployee]);
       this.isFormVisible = false;
       this.employee = undefined;
       this.new = false;
@@ -73,6 +72,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   onClose(): void {
     this.hideForm();
     this.employee = undefined;
+    this.closed.emit();
   }
 
   onReset(): void {
@@ -82,7 +82,6 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
       this.employeeForm.patchValue({});
     }
   }
-
 
   onAddEmployee(): void {
     const newId = this.generateNewId();
