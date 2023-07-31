@@ -1,0 +1,38 @@
+{
+  "employee.list": {
+    "button": {
+      "add": "Dodaj Pracownika"
+    },
+    "details": {
+      "title": "Szczegóły",
+      "id": "Id",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "skills": "Umiejętności",
+      "hireDate": "Data Zatrudnienia",
+      "manager": "Manager"
+    },
+    "actions": {
+      "edit": "Edytuj",
+      "close": "Zamknij"
+    },
+    "form": {
+      "labels": {
+        "name": "Imię Pracownika",
+        "surname": "Nazwisko Pracownika",
+        "skills": "Umiejętności Pracownika",
+        "hireDate": "Data Zatrudnienia Pracownika",
+        "manager": "Manager Pracownika"
+      },
+      "buttons": {
+        "save": "Zapisz",
+        "reset": "Zresetuj",
+        "close": "Zamknij"
+      }
+    }
+  },
+  "translate": {
+    "polish": "Polski",
+    "english": "Angielski"
+  }
+}

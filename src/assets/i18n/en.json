@@ -1,0 +1,38 @@
+{
+  "employee.list": {
+    "button": {
+      "add": "Add Employee"
+    },
+    "details": {
+      "title": "Details",
+      "id": "Id",
+      "name": "Name",
+      "surname": "Surname",
+      "skills": "Skills",
+      "hireDate": "Hire Date",
+      "manager": "Manager"
+    },
+    "actions": {
+      "edit": "Edit",
+      "close": "Close"
+    },
+    "form": {
+      "labels": {
+        "name": "Employee Name",
+        "surname": "Employee Surname",
+        "skills": "Employee Skills",
+        "hireDate": "Employee Hire Date",
+        "manager": "Employee Manager"
+      },
+      "buttons": {
+        "save": "Save",
+        "reset": "Reset",
+        "close": "Close"
+      }
+    }
+  },
+  "translate": {
+    "polish": "Polish",
+    "english": "English"
+  }
+}
