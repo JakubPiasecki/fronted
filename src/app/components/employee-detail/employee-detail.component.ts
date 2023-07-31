@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Employee } from '../employee';
-import { SKILLS } from '../mock/mock-skills';
+import { Employee } from '../../models/employee';
+import { SKILLS } from '../../mock/mock-skills';
 
 @Component({
   selector: 'app-employee-detail',
@@ -61,7 +61,6 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     }
   }
 
-
   onEdit(): void {
     this.isFormVisible = true;
   }
@@ -90,5 +89,4 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     this.isFormVisible = true;
     this.initForm();
   }
-
 }
