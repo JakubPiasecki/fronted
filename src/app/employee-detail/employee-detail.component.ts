@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../employee';
+import { SKILLS } from '../mock/mock-skills';
 
 @Component({
   selector: 'app-employee-detail',
@@ -9,14 +10,14 @@ import { Employee } from '../employee';
 })
 export class EmployeeDetailComponent implements OnInit, OnChanges {
   @Input() employee?: Employee;
-  @Input() employees: Employee[] = [];
-  @Output() employeesUpdated = new EventEmitter<Employee[]>();
+  @Input() managers?: string[];
+  @Output() employeeUpdated = new EventEmitter<Employee>();
   @Output() closed = new EventEmitter<void>();
+  @Output() newEmployeeCreated = new EventEmitter<Employee>();
   employeeForm!: FormGroup;
   isFormVisible = false;
-  availableSkills = ['skill1', 'skill2', 'skill3'];
-  updatedEmployees: Employee[] = [];
-  new = false;
+  availableSkills = SKILLS;
+  isCreatingNewEmployee = false;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -42,24 +43,24 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   }
 
   onSubmit(): void {
-    if (!this.new) {
+    if (this.employeeForm.valid) {
       const updatedEmployee: Employee = {
         ...this.employee,
         ...this.employeeForm.value,
       };
-      const updatedEmployees = this.employees.map((emp) => (emp.id === updatedEmployee.id ? updatedEmployee : emp));
-      this.employeesUpdated.emit(updatedEmployees);
-    } else {
-      const updatedEmployee: Employee = {
-        ...this.employee,
-        ...this.employeeForm.value,
-      };
-      this.employeesUpdated.emit([...this.updatedEmployees, updatedEmployee]);
+
+      if (this.isCreatingNewEmployee) {
+        delete updatedEmployee.id;
+        this.newEmployeeCreated.emit(updatedEmployee);
+      } else {
+        this.employeeUpdated.emit(updatedEmployee);
+      }
+
       this.isFormVisible = false;
       this.employee = undefined;
-      this.new = false;
     }
   }
+
 
   onEdit(): void {
     this.isFormVisible = true;
@@ -84,26 +85,10 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   }
 
   onAddEmployee(): void {
-    const newId = this.generateNewId();
-    const newEmployee: Employee = {
-      id: newId,
-      name: '',
-      surname: '',
-      skills: [],
-      hireDate: '',
-      manager: '',
-    };
-
-    this.updatedEmployees = [...this.employees];
-    this.employee = newEmployee;
-    this.new = true;
+    this.employee = { name: '', surname: '', skills: [], hireDate: '', manager: '' };
+    this.isCreatingNewEmployee = true;
     this.isFormVisible = true;
     this.initForm();
   }
 
-  private generateNewId(): string {
-    const maxIdNumber = this.employees.reduce((max, emp) => (Number(emp.id) > max ? Number(emp.id) : max), 0);
-    const newIdNumber = maxIdNumber + 1;
-    return newIdNumber.toString();
-  }
 }

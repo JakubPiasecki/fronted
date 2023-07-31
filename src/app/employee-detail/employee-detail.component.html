@@ -16,7 +16,6 @@
     <button (click)='onClose()'>Close</button>
   </div>
   <form *ngIf='isFormVisible' [formGroup]='employeeForm' (ngSubmit)='onSubmit()'>
-    <div>id: {{ employee.id }}</div>
     <div>
       <label for='name'>Employee name: </label>
       <input id='name' formControlName='name' />
@@ -38,9 +37,7 @@
     <div>
       <label for='manager'>Employee manager: </label>
       <select id='manager' formControlName='manager'>
-        <option *ngFor='let emp of employees' [value]='emp.id' [disabled]='emp.id === employee.id'>
-          {{ emp.name }} {{ emp.surname }}
-        </option>
+        <option *ngFor="let manager of managers" [value]="manager.split(' ')[0]">{{manager}}</option>
       </select>
     </div>
     <button type='submit' [disabled]='employeeForm.invalid'>Save</button>
