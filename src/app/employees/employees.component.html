@@ -1,14 +1,22 @@
-<ul class="employees">
-  <li *ngFor="let employee of employees" class="employees__item">
+<ul class='employees'>
+  <li *ngFor='let employee of employees' class='employees__item'>
     <button
-      class="employees__button"
+      class='employees__button'
       [ngClass]="{ 'employees__button--selected': selectedEmployee === employee }"
-      (click)="onSelect(employee)"
+      (click)='onSelect(employee)'
     >
-      <span class="employees__id">{{ employee.id }}</span>
-      <span class="employees__name">{{ employee.name }}</span>
+      <span class='employees__id'>{{ employee.id }}</span>
+      <span class='employees__name'>{{ employee.name }}</span>
     </button>
   </li>
 </ul>
 
-<app-employee-detail [employee]="selectedEmployee"></app-employee-detail>
+<app-employee-detail
+  [employee]="selectedEmployee"
+  [managers]="managers"
+  (employeeUpdated)="onEmployeeUpdated($event)"
+  (newEmployeeCreated)="onNewEmployeeCreated($event)"
+  (closed)="onEmployeeDetailsClosed()"
+></app-employee-detail>
+
+
