@@ -37,7 +37,9 @@
     <div>
       <label for="manager">{{ 'employee.list.form.labels.manager' | translate }}: </label>
       <select id="manager" formControlName="manager">
-        <option *ngFor="let manager of managers" [value]="manager.split(' ')[0]">{{ manager }}</option>
+        <option *ngFor="let manager of managers" [value]="manager.split(' ')[1] + ' ' + manager.split(' ')[2]">
+          {{ manager }}
+        </option>
       </select>
     </div>
     <button type="submit" [disabled]="employeeForm.invalid">{{ 'employee.list.form.buttons.save' | translate }}</button>

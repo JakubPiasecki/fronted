@@ -29,6 +29,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     if (changes['employee']) {
       this.initForm();
       this.hideForm();
+      this.isCreatingNewEmployee = false;
     }
   }
 
@@ -50,7 +51,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
       };
 
       if (this.isCreatingNewEmployee) {
-        delete updatedEmployee.id;
+        this.isCreatingNewEmployee = false;
         this.newEmployeeCreated.emit(updatedEmployee);
       } else {
         this.employeeUpdated.emit(updatedEmployee);
