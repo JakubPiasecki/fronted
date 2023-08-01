@@ -1,0 +1,5 @@
+<h2>{{ 'message.title' | translate }}</h2>
+<button type="button" (click)="messageService.clear()">{{ 'message.clear' | translate }}</button>
+<div *ngIf="messageService.messages.length">
+  <div *ngFor="let message of messageService.messages">{{ message }}</div>
+</div>

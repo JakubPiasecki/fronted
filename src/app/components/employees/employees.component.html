@@ -1,3 +1,4 @@
+<app-translate></app-translate>
 <ul class="employees">
   <li *ngFor="let employee of employees" class="employees__item">
     <button
@@ -18,4 +19,3 @@
   (newEmployeeCreated)="onNewEmployeeCreated($event)"
   (closed)="onEmployeeDetailsClosed()"
 ></app-employee-detail>
-<app-translate></app-translate>

@@ -34,5 +34,9 @@
   "translate": {
     "polish": "Polish",
     "english": "English"
+  },
+  "message": {
+    "title": "Messages",
+    "clear": "Clear messages"
   }
 }

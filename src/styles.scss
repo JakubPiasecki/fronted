@@ -3,6 +3,11 @@
 :root {
   font-size: 10px;
 }
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
 
 h1 {
   color: $h1-color;

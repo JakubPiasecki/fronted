@@ -9,13 +9,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateComponent } from './components/translate/translate.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, EmployeesComponent, EmployeeDetailComponent, TranslateComponent],
+  declarations: [AppComponent, EmployeesComponent, EmployeeDetailComponent, TranslateComponent, MessagesComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -1,34 +1,40 @@
-import { Component } from '@angular/core';
-import { EMPLOYEES } from '../../mock/mock-employee';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee.service';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss'],
 })
-export class EmployeesComponent {
-  employees: Employee[] = EMPLOYEES;
+export class EmployeesComponent implements OnInit {
+  employees: Employee[] = [];
   selectedEmployee?: Employee;
 
-  get managers(): string[] {
-    return this.employees
-      .filter((emp) => !this.selectedEmployee || emp.id !== this.selectedEmployee.id)
-      .map((emp) => `${emp.id} ${emp.name} ${emp.surname}`);
+  constructor(
+    private employeeService: EmployeeService,
+    private messageService: MessageService,
+  ) {}
+
+  ngOnInit(): void {
+    this.getEmployees();
+  }
+
+  getEmployees(): void {
+    this.employeeService.getEmployees().subscribe((employees) => (this.employees = employees));
   }
 
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
+    this.messageService.add(`EmployeesComponent: Selected employee id=${employee.id}`);
   }
 
   onEmployeeUpdated(updatedEmployee: Employee): void {
-    const employeeIndex = this.employees.findIndex((emp) => emp.id === updatedEmployee.id);
-    if (employeeIndex > -1) {
-      this.employees[employeeIndex] = updatedEmployee;
-    } else {
-      this.employees.push(updatedEmployee);
-    }
-    this.selectedEmployee = undefined;
+    this.employeeService.updateEmployee(updatedEmployee).subscribe(() => {
+      this.getEmployees();
+      this.selectedEmployee = undefined;
+    });
   }
 
   onEmployeeDetailsClosed(): void {
@@ -36,14 +42,15 @@ export class EmployeesComponent {
   }
 
   onNewEmployeeCreated(newEmployee: Employee): void {
-    newEmployee.id = this.generateNewId();
-    this.employees.push(newEmployee);
-    this.selectedEmployee = undefined;
+    this.employeeService.createEmployee(newEmployee).subscribe(() => {
+      this.getEmployees();
+      this.selectedEmployee = undefined;
+    });
   }
 
-  private generateNewId(): string {
-    const maxIdNumber = this.employees.reduce((max, emp) => (Number(emp.id) > max ? Number(emp.id) : max), 0);
-    const newIdNumber = maxIdNumber + 1;
-    return newIdNumber.toString();
+  get managers(): string[] {
+    return this.employees
+      .filter((emp) => !this.selectedEmployee || emp.id !== this.selectedEmployee.id)
+      .map((emp) => `${emp.id} ${emp.name} ${emp.surname}`);
   }
 }
