@@ -12,7 +12,10 @@ export class EmployeesComponent implements OnInit {
   employees: Employee[] = [];
   selectedEmployee?: Employee;
 
-  constructor(private employeeService: EmployeeService, private messageService: MessageService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private messageService: MessageService,
+  ) {}
 
   ngOnInit(): void {
     this.getEmployees();
