@@ -6,7 +6,7 @@ export const EMPLOYEES: Employee[] = [
     name: 'Grzegorz',
     surname: 'Gregory',
     skills: ['skill1', 'skill2'],
-    hireDate: '2023-07-21',
+    hireDate: new Date('2023-07-21'),
     manager: '',
   },
   {
@@ -14,7 +14,7 @@ export const EMPLOYEES: Employee[] = [
     name: 'Anna',
     surname: 'Ann',
     skills: ['skill1', 'skill2'],
-    hireDate: '2020-02-21',
-    manager: '',
+    hireDate: new Date('2022-01-12'),
+    manager: 'Grzegorz Gregory',
   },
 ];

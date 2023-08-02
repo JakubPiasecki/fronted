@@ -38,5 +38,11 @@
   "message": {
     "title": "Messages",
     "clear": "Clear messages"
+  },
+  "EmployeeService": {
+    "fetched_employee": "Fetched employee"
+  },
+  "EmployeesComponent": {
+    "selected_employee": "Selected employee with id={{id}}"
   }
 }

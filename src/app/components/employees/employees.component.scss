@@ -1,62 +1,30 @@
-@import 'src/variables';
+.employee-list {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-.employees {
-  margin: 0 0 2rem 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15rem;
+  &__id,
+  &__name {
+    margin: 0 10px;
+  }
 
   &__item {
-    display: flex;
-  }
-
-  &__id {
-    display: inline-block;
-    font-size: small;
-    color: $text-color-light;
-    padding: $padding-small;
-    background-color: $background-color-dark;
-    line-height: 0.3rem;
-    margin-right: 0.8rem;
-    border-radius: $badge-radius 0 0 $badge-radius;
-  }
-
-  &__name {
-    align-self: center;
-  }
-
-  &__button {
-    flex: 1;
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: $background-color-light;
-    margin: $button-margin;
-    padding: 0;
-    border-radius: $button-radius;
-    display: flex;
-    align-items: stretch;
-    height: $button-height;
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    border-radius: 5px;
 
     &:hover {
-      background-color: $background-color-hover;
-      left: 0.1rem;
+      cursor: pointer;
     }
 
-    &:active {
-      background-color: $background-color-selected;
-      color: $text-color-selected;
-    }
     &--selected {
-      background-color: $background-color-selected;
-      color: $text-color-selected;
+      background-color: #3f51b5;
 
-      &:hover {
-        background-color: $background-color-hover;
-      }
-
-      &:active {
-        background-color: $background-color-selected;
+      .employee-list__id,
+      .employee-list__name {
+        color: white !important;
       }
     }
   }

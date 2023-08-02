@@ -38,5 +38,11 @@
   "message": {
     "title": "Wiadomości",
     "clear": "Wyczyść wiadomości"
+  },
+  "EmployeeService": {
+    "fetched_employee": "Pobrano pracownika"
+  },
+  "EmployeesComponent": {
+    "selected_employee": "Wybrano pracownika o id={{id}}"
   }
 }
