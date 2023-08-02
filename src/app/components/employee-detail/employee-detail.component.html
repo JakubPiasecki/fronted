@@ -11,7 +11,7 @@
     <div>{{ 'employee.list.details.name' | translate }}: {{ employee.name }}</div>
     <div>{{ 'employee.list.details.surname' | translate }}: {{ employee.surname }}</div>
     <div>{{ 'employee.list.details.skills' | translate }}: {{ employee.skills.join(', ') }}</div>
-    <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.hireDate }}</div>
+    <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.hireDate.toString().slice(3,15) }}</div>
     <div>{{ 'employee.list.details.manager' | translate }}: {{ employee.manager }}</div>
 
     <button mat-raised-button color="primary" (click)="onEdit()">{{ 'employee.list.actions.edit' | translate }}</button>
@@ -34,7 +34,9 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>{{ 'employee.list.form.labels.hireDate' | translate }}</mat-label>
-      <input matInput type="date" id="hireDate" formControlName="hireDate" />
+      <input matInput [matDatepicker]='picker' id="hireDate" formControlName="hireDate" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
       <mat-label>{{ 'employee.list.form.labels.manager' | translate }}</mat-label>

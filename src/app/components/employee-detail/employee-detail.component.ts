@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../models/employee';
 import { SKILLS } from '../../mock/mock-skills';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-employee-detail',
@@ -38,7 +39,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
       name: [this.employee?.name || '', Validators.required],
       surname: [this.employee?.surname || '', Validators.required],
       skills: [this.employee?.skills || [], Validators.required],
-      hireDate: [this.employee?.hireDate || '', Validators.required],
+      hireDate: [this.employee?.hireDate ? new Date(this.employee.hireDate) : null, Validators.required],
       manager: [this.employee?.manager || '', Validators.required],
     });
   }
@@ -48,8 +49,8 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
       const updatedEmployee: Employee = {
         ...this.employee,
         ...this.employeeForm.value,
+        hireDate: new Date(this.employeeForm.value.hireDate),
       };
-
       if (this.isCreatingNewEmployee) {
         this.isCreatingNewEmployee = false;
         this.newEmployeeCreated.emit(updatedEmployee);
@@ -85,7 +86,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   }
 
   onAddEmployee(): void {
-    this.employee = { name: '', surname: '', skills: [], hireDate: '', manager: '' };
+    this.employee = { name: '', surname: '', skills: [], hireDate: new Date(), manager: '' };
     this.isCreatingNewEmployee = true;
     this.isFormVisible = true;
     this.initForm();
