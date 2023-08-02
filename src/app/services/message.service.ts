@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,8 +7,14 @@ import { Injectable } from '@angular/core';
 export class MessageService {
   messages: string[] = [];
 
-  add(message: string) {
-    this.messages.push(message);
+  constructor(private translate: TranslateService) {}
+
+  add(messageKey: string) {
+    this.messages.push(messageKey);
+  }
+
+  getTranslatedMessages() {
+    return this.messages.map((message) => this.translate.instant(message));
   }
 
   clear() {

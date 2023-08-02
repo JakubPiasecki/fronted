@@ -1,16 +1,17 @@
 <app-translate></app-translate>
-<ul class="employees">
-  <li *ngFor="let employee of employees" class="employees__item">
-    <button
-      class="employees__button"
-      [ngClass]="{ 'employees__button--selected': selectedEmployee === employee }"
-      (click)="onSelect(employee)"
-    >
-      <span class="employees__id">{{ employee.id }}</span>
-      <span class="employees__name">{{ employee.name }}</span>
-    </button>
-  </li>
-</ul>
+<mat-list class="employee-list">
+  <mat-list-item
+    *ngFor="let employee of employees"
+    class="employee-list__item"
+    [ngClass]="{ 'employee-list__item--selected': selectedEmployee === employee }"
+    (click)="onSelect(employee)"
+  >
+    <div class="employee-list__content">
+      <span class="employee-list__id">{{ employee.id }}</span>
+      <span class="employee-list__name">{{ employee.name }}</span>
+    </div>
+  </mat-list-item>
+</mat-list>
 
 <app-employee-detail
   [employee]="selectedEmployee"

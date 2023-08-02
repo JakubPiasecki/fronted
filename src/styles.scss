@@ -14,26 +14,11 @@ h1 {
   font-size: 2.5rem;
 }
 
-button {
-  background-color: $button-background-color;
-  border: none;
-  border-radius: $button-border-radius;
-  cursor: pointer;
-  color: $button-color;
-  font-size: $button-font-size;
-  padding: $button-padding;
-  margin-right: $button-margin;
-  margin-bottom: $button-margin;
-  margin-top: $button-margin;
-
-  &:hover {
-    background-color: $button-background-color-hover;
-    color: $button-color-hover;
-  }
-
-  &:disabled {
-    background-color: $button-background-color-disabled;
-    color: $button-color-disabled;
-    cursor: auto;
-  }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
