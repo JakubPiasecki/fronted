@@ -1,55 +1,68 @@
-<div *ngIf="!isFormVisible && !employee">
-  <button mat-raised-button color="primary" (click)="onAddEmployee()">
-    {{ 'employee.list.button.add' | translate }}
-  </button>
-</div>
+<div class="employee-details">
+  <div *ngIf="employee" class="employee-details__content">
+    <mat-card class="employee-details__card">
+      <div *ngIf="!isFormVisible" class="employee-details__information">
+        <h2>{{ employee.name | uppercase }} {{ 'employee.list.details.title' | translate }}</h2>
+        <div>id: {{ employee.id }}</div>
+        <div>{{ 'employee.list.details.name' | translate }}: {{ employee.name }}</div>
+        <div>{{ 'employee.list.details.surname' | translate }}: {{ employee.surname }}</div>
+        <div>{{ 'employee.list.details.skills' | translate }}: {{ employee.skills.join(', ') }}</div>
+        <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.hireDate.toString().slice(3, 15) }}</div>
+        <div>{{ 'employee.list.details.manager' | translate }}: {{ employee.manager }}</div>
 
-<div *ngIf="employee">
-  <div *ngIf="!isFormVisible">
-    <h2>{{ employee.name | uppercase }} {{ 'employee.list.details.title' | translate }}</h2>
-    <div>id: {{ employee.id }}</div>
-    <div>{{ 'employee.list.details.name' | translate }}: {{ employee.name }}</div>
-    <div>{{ 'employee.list.details.surname' | translate }}: {{ employee.surname }}</div>
-    <div>{{ 'employee.list.details.skills' | translate }}: {{ employee.skills.join(', ') }}</div>
-    <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.hireDate.toString().slice(3,15) }}</div>
-    <div>{{ 'employee.list.details.manager' | translate }}: {{ employee.manager }}</div>
-
-    <button mat-raised-button color="primary" (click)="onEdit()">{{ 'employee.list.actions.edit' | translate }}</button>
-    <button mat-button (click)="onClose()">{{ 'employee.list.actions.close' | translate }}</button>
+        <button mat-raised-button color="primary" class="employee-details__edit-button" (click)="onEdit()">
+          {{ 'employee.list.actions.edit' | translate }}
+        </button>
+        <button mat-button class="employee-details__close-button" (click)="onClose()">
+          {{ 'employee.list.actions.close' | translate }}
+        </button>
+      </div>
+      <form *ngIf="isFormVisible" [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-details__form">
+        <mat-form-field class="employee-details__form-field">
+          <mat-label>{{ 'employee.list.form.labels.name' | translate }}</mat-label>
+          <input matInput id="name" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field class="employee-details__form-field">
+          <mat-label>{{ 'employee.list.form.labels.surname' | translate }}</mat-label>
+          <input matInput id="surname" formControlName="surname" />
+        </mat-form-field>
+        <mat-form-field class="employee-details__form-field">
+          <mat-label>{{ 'employee.list.form.labels.skills' | translate }}</mat-label>
+          <mat-select id="skills" formControlName="skills" multiple>
+            <mat-option *ngFor="let skill of availableSkills" [value]="skill">{{ skill }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="employee-details__form-field">
+          <mat-label>{{ 'employee.list.form.labels.hireDate' | translate }}</mat-label>
+          <input matInput [matDatepicker]="picker" id="hireDate" formControlName="hireDate" />
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="employee-details__form-field">
+          <mat-label>{{ 'employee.list.form.labels.manager' | translate }}</mat-label>
+          <mat-select id="manager" formControlName="manager">
+            <mat-option *ngFor="let manager of managers" [value]="manager.id">
+              {{ manager.name }} {{ manager.surname }}
+            </mat-option>
+            >
+          </mat-select>
+        </mat-form-field>
+        <button
+          color="primary"
+          mat-raised-button
+          type="submit"
+          [disabled]="employeeForm.invalid"
+          class="employee-details__save-button"
+        >
+          {{ 'employee.list.form.buttons.save' | translate }}
+        </button>
+        <button mat-button type="button" class="employee-details__reset-button" (click)="onReset()">
+          {{ 'employee.list.form.buttons.reset' | translate }}
+        </button>
+        <button mat-button type="button" class="employee-details__close-form-button" (click)="onClose()">
+          {{ 'employee.list.form.buttons.close' | translate }}
+        </button>
+      </form>
+    </mat-card>
   </div>
-  <form *ngIf="isFormVisible" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <mat-label>{{ 'employee.list.form.labels.name' | translate }}</mat-label>
-      <input matInput id="name" formControlName="name" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>{{ 'employee.list.form.labels.surname' | translate }}</mat-label>
-      <input matInput id="surname" formControlName="surname" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>{{ 'employee.list.form.labels.skills' | translate }}</mat-label>
-      <mat-select id="skills" formControlName="skills" multiple>
-        <mat-option *ngFor="let skill of availableSkills" [value]="skill">{{ skill }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>{{ 'employee.list.form.labels.hireDate' | translate }}</mat-label>
-      <input matInput [matDatepicker]='picker' id="hireDate" formControlName="hireDate" />
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>{{ 'employee.list.form.labels.manager' | translate }}</mat-label>
-      <mat-select id="manager" formControlName="manager">
-        <mat-option *ngFor="let manager of managers" [value]="manager.split(' ')[1] + ' ' + manager.split(' ')[2]">{{
-          manager
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button color="primary" mat-raised-button type="submit" [disabled]="employeeForm.invalid">
-      {{ 'employee.list.form.buttons.save' | translate }}
-    </button>
-    <button mat-button type="button" (click)="onReset()">{{ 'employee.list.form.buttons.reset' | translate }}</button>
-    <button mat-button type="button" (click)="onClose()">{{ 'employee.list.form.buttons.close' | translate }}</button>
-  </form>
 </div>

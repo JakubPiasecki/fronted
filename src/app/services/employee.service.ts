@@ -21,6 +21,12 @@ export class EmployeeService {
     return of(this.employees);
   }
 
+  getEmployee(id: string): Observable<Employee | undefined> {
+    const employee = EMPLOYEES.find((e) => e.id === id);
+    this.messageService.add(`EmployeeService: fetched employee id=${id}`);
+    return of(employee);
+  }
+
   updateEmployee(updatedEmployee: Employee): Observable<void> {
     const employeeIndex = this.employees.findIndex((emp) => emp.id === updatedEmployee.id);
     if (employeeIndex > -1) {
@@ -40,5 +46,9 @@ export class EmployeeService {
     const maxIdNumber = this.employees.reduce((max, emp) => (Number(emp.id) > max ? Number(emp.id) : max), 0);
     const newIdNumber = maxIdNumber + 1;
     return newIdNumber.toString();
+  }
+
+  getManagers(): Observable<Employee[]> {
+    return this.getEmployees();
   }
 }

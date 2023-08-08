@@ -1,0 +1,11 @@
+<h2>{{ 'employee.dashboard.title' | translate }}</h2>
+<div class="employees-list">
+  <div *ngFor="let employee of employees" class="employees-list__item" routerLink="/detail/{{ employee.id }}">
+    {{ employee.name }}
+  </div>
+</div>
+<div class="add-button">
+  <button mat-raised-button color="primary" (click)="onAddEmployee()">
+    {{ 'employee.list.button.add' | translate }}
+  </button>
+</div>

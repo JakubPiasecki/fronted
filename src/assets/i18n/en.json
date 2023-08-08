@@ -44,5 +44,9 @@
   },
   "EmployeesComponent": {
     "selected_employee": "Selected employee with id={{id}}"
+  },
+  "languageChanged": "The language has been changed",
+  "employee.dashboard": {
+    "title": "New employees"
   }
 }

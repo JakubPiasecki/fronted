@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+@import '../../../variables';
+@include mat.core();
+@include mat.all-component-themes($my-theme);
+
+h2 {
+  text-align: center;
+  color: map-get($my-primary, 900);
+  font-size: 2em;
+}
+
+.employees-list {
+  width: 60%;
+  margin: 0 auto;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    background-color: map-get($my-primary, 100);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: map-get($my-primary, 500);
+      color: white;
+      transform: scale(1.03);
+    }
+  }
+
+  &__name {
+    margin: 0 10px;
+    color: map-get($my-primary, 700);
+  }
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: white;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+@media (max-width: 600px) {
+  .employees-list {
+    width: 90%;
+  }
+}

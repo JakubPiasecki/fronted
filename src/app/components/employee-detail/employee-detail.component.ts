@@ -1,8 +1,21 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../models/employee';
 import { SKILLS } from '../../mock/mock-skills';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { EmployeeService } from '../../services/employee.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-employee-detail',
@@ -11,7 +24,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 })
 export class EmployeeDetailComponent implements OnInit, OnChanges {
   @Input() employee?: Employee;
-  @Input() managers?: string[];
+  managers: Employee[] = [];
   @Output() employeeUpdated = new EventEmitter<Employee>();
   @Output() closed = new EventEmitter<void>();
   @Output() newEmployeeCreated = new EventEmitter<Employee>();
@@ -19,11 +32,41 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   isFormVisible = false;
   availableSkills = SKILLS;
   isCreatingNewEmployee = false;
+  destroyRef = inject(DestroyRef);
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      if (params['id'] === 'create') {
+        this.onAddEmployee();
+      } else {
+        this.getEmployee();
+        this.getManagers();
+      }
+    });
     this.initForm();
+  }
+
+  getEmployee(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id')).toString();
+    this.employeeService
+      .getEmployee(id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((employee) => (this.employee = employee));
+  }
+
+  getManagers(): void {
+    this.employeeService
+      .getManagers()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((managers) => (this.managers = managers));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -52,18 +95,20 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
         hireDate: new Date(this.employeeForm.value.hireDate),
       };
       if (this.isCreatingNewEmployee) {
-        this.isCreatingNewEmployee = false;
-        this.newEmployeeCreated.emit(updatedEmployee);
+        this.employeeService.createEmployee(updatedEmployee).subscribe(() => {
+          this.router.navigate(['/employees']);
+          this.newEmployeeCreated.emit(updatedEmployee);
+        });
       } else {
-        this.employeeUpdated.emit(updatedEmployee);
+        this.employeeService.updateEmployee(updatedEmployee).subscribe(() => {
+          this.router.navigate(['/employees']);
+        });
       }
-
-      this.isFormVisible = false;
-      this.employee = undefined;
     }
   }
 
   onEdit(): void {
+    this.initForm();
     this.isFormVisible = true;
   }
 
@@ -74,6 +119,7 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
   onClose(): void {
     this.hideForm();
     this.employee = undefined;
+    this.location.back();
     this.closed.emit();
   }
 
@@ -90,5 +136,6 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     this.isCreatingNewEmployee = true;
     this.isFormVisible = true;
     this.initForm();
+    this.getManagers();
   }
 }

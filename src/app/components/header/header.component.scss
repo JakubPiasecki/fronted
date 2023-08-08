@@ -1,0 +1,53 @@
+@import '../../../variables';
+.header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: map-get($my-primary, 900);
+  padding: 0 30px;
+  margin: 10px auto;
+  border-radius: 10px;
+
+  &__title {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 10px;
+    color: map-get($my-accent, 100);
+  }
+
+  &__content {
+    color: map-get($my-accent, 700);
+    cursor: pointer;
+  }
+
+  &__navigation {
+    color: map-get($my-primary, 100);
+    padding-left: 10px;
+
+    a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      transition: background-color 0.3s ease;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: map-get($my-primary, 800);
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    width: 90%;
+    padding: 0 15px;
+
+    &__title {
+      font-size: 1.5em;
+      padding: 10px;
+    }
+  }
+}
