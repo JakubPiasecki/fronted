@@ -1,52 +1,53 @@
 @import '../../../variables';
+
 .header {
   width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: map-get($my-primary, 900);
+  background-color: $navy-darkest;
   padding: 0 30px;
   margin: 10px auto;
   border-radius: 10px;
 
   &__title {
-    font-size: 1.3em;
+    font-size: 2rem;
     margin: 0;
     padding: 10px;
-    color: map-get($my-accent, 100);
+    color: $rose-light;
   }
 
   &__content {
-    color: map-get($my-accent, 700);
+    color: $navy-dark;
     cursor: pointer;
   }
 
   &__navigation {
-    color: map-get($my-primary, 100);
+    color: $navy-light;
     padding-left: 10px;
+  }
 
-    a {
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      transition: background-color 0.3s ease;
+  &__link {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: $navy-dark;
       border-radius: 10px;
-
-      &:hover {
-        background-color: map-get($my-primary, 800);
-        border-radius: 10px;
-      }
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $breakpoint-mobile) {
   .header {
     width: 90%;
     padding: 0 15px;
 
     &__title {
-      font-size: 1.5em;
+      font-size: 1.5rem;
       padding: 10px;
     }
   }

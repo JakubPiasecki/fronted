@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 
-@include mat.core();
+$breakpoint-mobile: 600px;
 
 $custom-pastel-navy-palette: (
   50: #e5ebff,
@@ -63,3 +63,12 @@ $my-theme: mat.define-light-theme(
     ),
   )
 );
+
+$navy-lightest: map-get($custom-pastel-navy-palette, 50);
+$navy-light: map-get($custom-pastel-navy-palette, 100);
+$navy-medium: map-get($custom-pastel-navy-palette, 500);
+$navy-dark: map-get($custom-pastel-navy-palette, 700);
+$navy-darkest: map-get($custom-pastel-navy-palette, 900);
+
+$rose-lightest: map-get($custom-pastel-rose-palette, 50);
+$rose-light: map-get($custom-pastel-rose-palette, 100);

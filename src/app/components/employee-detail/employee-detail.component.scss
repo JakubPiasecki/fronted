@@ -1,4 +1,5 @@
 @import '../../../variables';
+
 .employee-details {
   width: 60%;
   margin: 0 auto;
@@ -6,12 +7,12 @@
   &__card {
     display: block;
     padding: 20px;
-    background-color: map-get($my-primary, 100);
+    background-color: $navy-light;
     border-radius: 8px;
     box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-      0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 1px 5px 0px rgba(0, 0, 0, 0.12);
   }
 
   &__form-field {
@@ -20,23 +21,30 @@
 
   &__information {
     padding: 20px;
-    background-color: map-get($my-primary, 50);
+    background-color: $navy-lightest;
     border-radius: 8px;
+  }
 
-    h2 {
-      margin-bottom: 20px;
-      color: map-get($my-primary, 500);
+  &__title {
+    margin-bottom: 20px;
+    color: $navy-medium;
+  }
+
+  &__button {
+    margin-right: 10px;
+    color: white;
+
+    &--edit {
+      background-color: $navy-light;
     }
 
-    button {
-      margin-right: 10px;
-      background-color: map-get($my-primary, 400);
-      color: white;
+    &--close {
+      background-color: $navy-lightest;
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $breakpoint-mobile) {
   .employee-details {
     width: 90%;
     margin: 0 auto;

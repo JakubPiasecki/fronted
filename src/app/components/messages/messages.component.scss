@@ -1,13 +1,12 @@
 @import '../../../variables';
-.message-icon {
-  color: map-get($my-primary, 100);
+
+.message-icon-btn {
+  &__icon {
+    color: $navy-light;
+  }
 }
 
-::ng-deep .message {
-  padding: 16px;
-}
-
-.message {
+.message-menu {
   &__button {
     width: 100%;
   }

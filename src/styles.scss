@@ -4,6 +4,12 @@
   font-size: 10px;
 }
 
+h2 {
+  text-align: center;
+  color: map-get($my-primary, 900);
+  font-size: 2em;
+}
+
 *,
 *::before,
 *::after {
