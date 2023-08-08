@@ -6,14 +6,14 @@
   justify-content: space-between;
   align-items: center;
   background-color: $navy-darkest;
-  padding: 0 30px;
-  margin: 10px auto;
-  border-radius: 10px;
+  padding: 0 1.875rem;
+  margin: 0.625rem auto;
+  border-radius: 0.625rem;
 
   &__title {
     font-size: 2rem;
     margin: 0;
-    padding: 10px;
+    padding: 0.625rem;
     color: $rose-light;
   }
 
@@ -24,19 +24,19 @@
 
   &__navigation {
     color: $navy-light;
-    padding-left: 10px;
+    padding-left: 0.625rem;
   }
 
   &__link {
     color: white;
     text-decoration: none;
-    padding: 10px;
+    padding: 0.625rem;
     transition: background-color 0.3s ease;
-    border-radius: 10px;
+    border-radius: 0.625rem;
 
     &:hover {
       background-color: $navy-dark;
-      border-radius: 10px;
+      border-radius: 0.625rem;
     }
   }
 }
@@ -44,11 +44,11 @@
 @media (max-width: $breakpoint-mobile) {
   .header {
     width: 90%;
-    padding: 0 15px;
+    padding: 0 0.9375rem;
 
     &__title {
       font-size: 1.5rem;
-      padding: 10px;
+      padding: 0.625rem;
     }
   }
 }

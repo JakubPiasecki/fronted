@@ -12,13 +12,13 @@
 
   &__id,
   &__name {
-    margin: 0 10px;
+    margin: 0 0.625rem;
   }
 
   &__item {
     background-color: $navy-light;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    margin-bottom: 0.625rem;
+    border-radius: 0.3125rem;
     transition:
       transform 0.3s ease,
       background-color 0.3s ease;

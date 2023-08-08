@@ -3,12 +3,12 @@
 .employee-dashboard {
   &__item {
     width: 60%;
-    margin: 10px auto;
+    margin: 0.625rem auto;
     display: flex;
     justify-content: space-between;
     background-color: $navy-light;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 0.625rem;
+    border-radius: 0.3125rem;
     transition:
       transform 0.3s ease,
       background-color 0.3s ease;
@@ -22,14 +22,14 @@
   }
 
   &__name {
-    margin: 0 10px;
+    margin: 0 0.625rem;
     color: $navy-dark;
   }
 
   &__action {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     background-color: white;
 
     &:hover {
