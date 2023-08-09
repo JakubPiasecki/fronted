@@ -14,7 +14,8 @@
     },
     "actions": {
       "edit": "Edit",
-      "close": "Close"
+      "close": "Close",
+      "delete": "Delete"
     },
     "form": {
       "labels": {

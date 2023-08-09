@@ -51,4 +51,13 @@ export class EmployeeService {
   getManagers(): Observable<Employee[]> {
     return this.getEmployees();
   }
+
+  deleteEmployee(id: string | undefined): Observable<void> {
+    const index = this.employees.findIndex((emp) => emp.id === id);
+    if (index > -1) {
+      this.employees.splice(index, 1);
+      this.messageService.add(`EmployeeService: deleted employee id=${id}`);
+    }
+    return of(undefined);
+  }
 }

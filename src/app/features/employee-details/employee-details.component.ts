@@ -19,10 +19,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-employee-detail',
-  templateUrl: './employee-detail.component.html',
-  styleUrls: ['./employee-detail.component.scss'],
+  templateUrl: './employee-details.component.html',
+  styleUrls: ['./employee-details.component.scss'],
 })
-export class EmployeeDetailComponent implements OnInit, OnChanges {
+export class EmployeeDetailsComponent implements OnInit, OnChanges {
   @Input() employee?: Employee;
   managers: Employee[] = [];
   @Output() employeeUpdated = new EventEmitter<Employee>();
@@ -137,5 +137,10 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     this.isFormVisible = true;
     this.initForm();
     this.getManagers();
+  }
+
+  onDelete(id: string | undefined) {
+    this.employeeService.deleteEmployee(id);
+    this.location.back();
   }
 }
