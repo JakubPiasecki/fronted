@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'detail/:id',
-    loadChildren: () => import('./features/employee-detail/employee-detail.module').then((m) => m.EmployeeDetailModule),
+    loadChildren: () => import('./features/employee-details/employee-details.module').then((m) => m.EmployeeDetailsModule),
   },
   {
     path: 'employees',
