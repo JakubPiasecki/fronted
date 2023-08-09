@@ -1,28 +1,76 @@
-@import 'assets/colors';
+@use '@angular/material' as mat;
 
-$h1-color: $app-color-black;
+$breakpoint-mobile: 600px;
 
-$background-color-dark: $app-color-dark-gray;
-$background-color-light: $app-color-white;
-$background-color-hover: $app-color-black;
-$background-color-selected: $app-color-black;
+$custom-pastel-navy-palette: (
+  50: #e5ebff,
+  100: #ccd8ff,
+  200: #b0c2ff,
+  300: #95acff,
+  400: #7d99ff,
+  500: #6685ff,
+  600: #5c78e0,
+  700: #5068c0,
+  800: #4459a0,
+  900: #394a80,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
 
-$text-color-light: $app-color-white;
-$text-color-selected: $app-color-white;
+$custom-pastel-rose-palette: (
+  50: #fffaf9,
+  100: #fff2f0,
+  200: #ffe5e1,
+  300: #ffd6d0,
+  400: #ffc9c3,
+  500: #ffbfb6,
+  600: #ffb3ae,
+  700: #ffa4a1,
+  800: #ff9694,
+  900: #ff8380,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
 
-$button-background-color: $app-color-white;
-$button-background-color-hover: $app-color-black;
-$button-background-color-disabled: $app-color-white;
-$button-color: $app-color-black;
-$button-color-hover: $app-color-white;
-$button-color-disabled: $app-color-gray;
+$my-primary: mat.define-palette($custom-pastel-navy-palette, 500);
+$my-accent: mat.define-palette($custom-pastel-rose-palette, 500);
 
-$button-border-radius: 4px;
-$button-font-size: 1.2rem;
-$button-padding: 1rem;
-$button-margin: 0.5rem;
-$button-height: 1.8rem;
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+  )
+);
 
-$padding-small: 0.8rem 0.7rem 0 0.7rem;
-$button-radius: 4px;
-$badge-radius: 4px;
+$navy-lightest: map-get($custom-pastel-navy-palette, 50);
+$navy-light: map-get($custom-pastel-navy-palette, 100);
+$navy-medium: map-get($custom-pastel-navy-palette, 500);
+$navy-dark: map-get($custom-pastel-navy-palette, 700);
+$navy-darkest: map-get($custom-pastel-navy-palette, 900);
+
+$rose-lightest: map-get($custom-pastel-rose-palette, 50);
+$rose-light: map-get($custom-pastel-rose-palette, 100);
+
+$white: white;

@@ -16,15 +16,32 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
-import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './components/header/header.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [AppComponent, EmployeesComponent, EmployeeDetailComponent, TranslateComponent, MessagesComponent],
+  declarations: [
+    AppComponent,
+    EmployeesComponent,
+    EmployeeDetailComponent,
+    TranslateComponent,
+    MessagesComponent,
+    DashboardComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -35,8 +52,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     BrowserAnimationsModule,
     MatInputModule,
@@ -44,10 +61,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     MatListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    RouterLink,
+    RouterOutlet,
+    AppRoutingModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
