@@ -138,4 +138,9 @@ export class EmployeeDetailComponent implements OnInit, OnChanges {
     this.initForm();
     this.getManagers();
   }
+
+  onDelete(id: string | undefined) {
+    this.employeeService.deleteEmployee(id);
+    this.location.back();
+  }
 }

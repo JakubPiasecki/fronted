@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { DateAdapter } from '@angular/material/core';
-import { MessageService } from '../../services/message.service';
+import { MessageService } from '../../../../services/message.service';
 
 @Component({
   selector: 'app-translate',

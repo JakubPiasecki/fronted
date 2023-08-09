@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
-import { EmployeesComponent } from './components/employees/employees.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'detail/:id', component: EmployeeDetailComponent },
-  { path: 'employees', component: EmployeesComponent },
-  { path: 'add', component: EmployeeDetailComponent },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./features/dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
+    path: 'detail/:id',
+    loadChildren: () => import('./features/employee-detail/employee-detail.module').then((m) => m.EmployeeDetailModule),
+  },
+  {
+    path: 'employees',
+    loadChildren: () => import('./features/employees/employees.module').then((m) => m.EmployeesModule),
+  },
   { path: '**', redirectTo: '/dashboard' },
 ];
 

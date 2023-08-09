@@ -13,6 +13,9 @@
         <button mat-raised-button color="primary" class="employee-details__edit-button" (click)="onEdit()">
           {{ 'employee.list.actions.edit' | translate }}
         </button>
+        <button mat-raised-button color="warn" class="employee-details__delete-button" (click)="onDelete(employee.id)">
+          {{ 'employee.list.actions.delete' | translate }}
+        </button>
         <button mat-button class="employee-details__close-button" (click)="onClose()">
           {{ 'employee.list.actions.close' | translate }}
         </button>
