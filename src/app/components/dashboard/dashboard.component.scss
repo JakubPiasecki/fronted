@@ -16,7 +16,7 @@
     &:hover {
       cursor: pointer;
       background-color: $navy-medium;
-      color: white;
+      color: $white;
       transform: scale(1.03);
     }
   }
@@ -30,10 +30,10 @@
     display: flex;
     justify-content: center;
     margin-top: 1.25rem;
-    background-color: white;
+    background-color: $white;
 
     &:hover {
-      background-color: white;
+      background-color: $white;
     }
   }
 }
