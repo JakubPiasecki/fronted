@@ -3,11 +3,11 @@
 .employee-search {
   width: 80%;
   display: block;
-  padding: 7px;
-  border: 1px solid $navy-lightest;
-  border-radius: 8px;
+  padding: 0.5rem;
+  border: 0.5rem solid $navy-lightest;
+  border-radius: 0.5rem;
   background-color: $white;
-  box-shadow: 0 2px 8px rgba($navy-darkest, 0.1);
+  box-shadow: 0 0.125rem 0.5rem rgba($navy-darkest, 0.1);
   margin: 0 auto;
 
   &__field {
@@ -19,7 +19,7 @@
 
     .mat-form-field-infix {
       border-top: none;
-      padding: 0.5em 0;
+      padding: 0.5rem 0;
     }
   }
 

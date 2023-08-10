@@ -1,5 +1,5 @@
 <app-employee-search></app-employee-search>
-<div class="dashboard">
+<div class="dashboard__body">
   <mat-spinner class="dashboard__spinner" *ngIf="isLoading; else employeeContent"> </mat-spinner>
   <ng-template #employeeContent>
     <h2>{{ 'employee.dashboard.title' | translate }}</h2>
