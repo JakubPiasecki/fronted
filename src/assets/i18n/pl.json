@@ -49,5 +49,8 @@
   "languageChanged": "Język został zmieniony",
   "employee.dashboard": {
     "title": "Nowi pracownicy"
+  },
+  "employee": {
+    "search": "Wyszukaj pracownika"
   }
 }

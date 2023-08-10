@@ -1,0 +1,21 @@
+<app-employee-search></app-employee-search>
+<div class="dashboard__body">
+  <mat-spinner class="dashboard__spinner" *ngIf="isLoading; else employeeContent"> </mat-spinner>
+  <ng-template #employeeContent>
+    <h2>{{ 'employee.dashboard.title' | translate }}</h2>
+    <div class="dashboard__employee-list">
+      <div
+        *ngFor="let employee of employees"
+        class="dashboard__employee-list__item"
+        routerLink="/detail/{{ employee.id }}"
+      >
+        {{ employee.name }}
+      </div>
+    </div>
+    <div class="dashboard__action">
+      <button mat-raised-button color="primary" (click)="onAddEmployee()">
+        {{ 'employee.list.button.add' | translate }}
+      </button>
+    </div>
+  </ng-template>
+</div>

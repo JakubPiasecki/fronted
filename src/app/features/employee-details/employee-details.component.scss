@@ -3,6 +3,9 @@
 .employee-details {
   width: 60%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &__card {
     display: block;

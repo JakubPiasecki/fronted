@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { Employee } from '../../models/employee';
-import { EmployeeService } from '../../services/employee.service';
+import { Employee } from '../../../../models/employee';
+import { EmployeeService } from '../../../../services/employee.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   employees: Employee[] = [];
   employee?: Employee;
   destroyRef = inject(DestroyRef);
+  isLoading = true;
 
   constructor(
     private employeeService: EmployeeService,
@@ -31,12 +32,18 @@ export class DashboardComponent implements OnInit {
       .getEmployees()
       .pipe(
         map((employees) => {
-          const employeesCopy = [...employees];
+          const employeesCopy = [...employees].map((emp) => {
+            emp.hireDate = new Date(emp.hireDate);
+            return emp;
+          });
           return employeesCopy.sort((a, b) => b.hireDate.getTime() - a.hireDate.getTime()).slice(0, 5);
         }),
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((sortedEmployees) => (this.employees = sortedEmployees));
+      .subscribe((sortedEmployees) => {
+        this.employees = sortedEmployees;
+        this.isLoading = false;
+      });
   }
 
   onAddEmployee(): void {
