@@ -3,11 +3,11 @@ import { EMPLOYEES } from '../mock/mock-employee';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class InMemoryDataService implements InMemoryDbService{
+export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    let employee = EMPLOYEES;
-    return {employee} ;
+    const employee = EMPLOYEES;
+    return { employee };
   }
 }

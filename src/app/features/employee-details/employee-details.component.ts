@@ -33,6 +33,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
   availableSkills = SKILLS;
   isCreatingNewEmployee = false;
   destroyRef = inject(DestroyRef);
+  isLoading = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,14 +60,20 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     this.employeeService
       .getEmployee(id)
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((employee) => (this.employee = employee));
+      .subscribe((employee) => {
+        this.employee = employee;
+        this.isLoading = false;
+      });
   }
 
   getManagers(): void {
     this.employeeService
       .getManagers()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((managers) => (this.managers = managers));
+      .subscribe((managers) => {
+        this.managers = managers;
+        this.isLoading = false;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -144,5 +151,4 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
       this.location.back();
     });
   }
-
 }

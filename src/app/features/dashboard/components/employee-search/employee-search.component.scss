@@ -1,4 +1,4 @@
-@import "../../../../../variables";
+@import '../../../../../variables';
 
 .employee-search {
   width: 80%;
@@ -37,7 +37,8 @@
 
   &__autocomplete {
     .mat-option {
-      &:hover, &:active {
+      &:hover,
+      &:active {
         background-color: $rose-lightest;
       }
 
@@ -57,4 +58,3 @@
     }
   }
 }
-

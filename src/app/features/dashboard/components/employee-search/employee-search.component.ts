@@ -7,13 +7,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-search',
   templateUrl: './employee-search.component.html',
-  styleUrls: ['./employee-search.component.scss']
+  styleUrls: ['./employee-search.component.scss'],
 })
 export class EmployeeSearchComponent implements OnInit {
   employees$!: Observable<Employee[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private employeeService: EmployeeService, private router: Router) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router,
+  ) {}
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -32,5 +35,4 @@ export class EmployeeSearchComponent implements OnInit {
       switchMap((term: string) => this.employeeService.searchEmployees(term)),
     );
   }
-
 }

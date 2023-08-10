@@ -10,10 +10,20 @@ import { EmployeeSearchComponent } from './components/employee-search/employee-s
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [DashboardComponent, EmployeeSearchComponent],
-  imports: [CommonModule, DashboardRoutingModule, MatButtonModule, TranslateModule, NavigationModule, MatAutocompleteModule, MatSelectModule, MatInputModule]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    MatButtonModule,
+    TranslateModule,
+    NavigationModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+  ],
 })
-export class DashboardModule {
-}
+export class DashboardModule {}

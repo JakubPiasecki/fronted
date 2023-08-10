@@ -29,7 +29,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatInputModule,
     MatListModule,
     MatLineModule,
-    MatAutocompleteModule
-  ]
+    MatAutocompleteModule,
+  ],
 })
 export class NavigationModule {}

@@ -1,28 +1,36 @@
-@import "../../../../../variables";
-.employee-dashboard {
-  &__item {
+@import '../../../../../variables';
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__employee-list {
     width: 60%;
-    margin: 0.625rem auto;
     display: flex;
-    justify-content: space-between;
-    background-color: $navy-light;
-    padding: 0.625rem;
-    border-radius: 0.3125rem;
-    transition:
-      transform 0.3s ease,
-      background-color 0.3s ease;
+    flex-direction: column;
+    align-items: center;
 
-    &:hover {
-      cursor: pointer;
-      background-color: $navy-medium;
-      color: $white;
-      transform: scale(1.03);
+    &__item {
+      width: 60%;
+      margin: 0.625rem auto;
+      display: flex;
+      justify-content: space-between;
+      background-color: $navy-light;
+      padding: 0.625rem;
+      border-radius: 0.3125rem;
+      transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $navy-medium;
+        color: $white;
+        transform: scale(1.03);
+      }
     }
-  }
-
-  &__name {
-    margin: 0 0.625rem;
-    color: $navy-dark;
   }
 
   &__action {
@@ -38,9 +46,11 @@
 }
 
 @media (max-width: $breakpoint-mobile) {
-  .employee-dashboard {
-    &__item {
-      width: 90%;
+  .dashboard {
+    &__employee-list {
+      &__item {
+        width: 90%;
+      }
     }
   }
 }

@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   employees: Employee[] = [];
   employee?: Employee;
   destroyRef = inject(DestroyRef);
+  isLoading = true;
 
   constructor(
     private employeeService: EmployeeService,
@@ -31,7 +32,7 @@ export class DashboardComponent implements OnInit {
       .getEmployees()
       .pipe(
         map((employees) => {
-          const employeesCopy = [...employees].map(emp => {
+          const employeesCopy = [...employees].map((emp) => {
             emp.hireDate = new Date(emp.hireDate);
             return emp;
           });
@@ -39,7 +40,10 @@ export class DashboardComponent implements OnInit {
         }),
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((sortedEmployees) => (this.employees = sortedEmployees));
+      .subscribe((sortedEmployees) => {
+        this.employees = sortedEmployees;
+        this.isLoading = false;
+      });
   }
 
   onAddEmployee(): void {
