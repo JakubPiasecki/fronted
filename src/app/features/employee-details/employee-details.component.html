@@ -7,7 +7,7 @@
         <div>{{ 'employee.list.details.name' | translate }}: {{ employee.name }}</div>
         <div>{{ 'employee.list.details.surname' | translate }}: {{ employee.surname }}</div>
         <div>{{ 'employee.list.details.skills' | translate }}: {{ employee.skills.join(', ') }}</div>
-        <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.hireDate.toString().slice(3, 15) }}</div>
+        <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.hireDate.toString().slice(0, 10) }}</div>
         <div>{{ 'employee.list.details.manager' | translate }}: {{ employee.manager }}</div>
 
         <button mat-raised-button color="primary" class="employee-details__edit-button" (click)="onEdit()">

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +22,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { NavigationModule } from './features/navigation/navigation.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './services/in-memory-data.service';
+import { EmployeeSearchComponent } from './features/dashboard/components/employee-search/employee-search.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -30,6 +33,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false, passThruUnknownUrl: true }
+    ),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -39,8 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
+        deps: [HttpClient]
+      }
     }),
     BrowserAnimationsModule,
     MatInputModule,
@@ -58,9 +64,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterLink,
     RouterOutlet,
     AppRoutingModule,
-    NavigationModule,
+    NavigationModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  exports: [
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

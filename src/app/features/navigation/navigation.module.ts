@@ -10,6 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterLink } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatLineModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [HeaderComponent, MessagesComponent, TranslateComponent],
@@ -22,6 +26,10 @@ import { RouterLink } from '@angular/router';
     MatButtonModule,
     MatBadgeModule,
     RouterLink,
-  ],
+    MatInputModule,
+    MatListModule,
+    MatLineModule,
+    MatAutocompleteModule
+  ]
 })
 export class NavigationModule {}

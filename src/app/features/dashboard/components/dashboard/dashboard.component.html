@@ -1,3 +1,4 @@
+<app-employee-search></app-employee-search>
 <h2>{{ 'employee.dashboard.title' | translate }}</h2>
 <div class="employee-dashboard">
   <div *ngFor="let employee of employees" class="employee-dashboard__item" routerLink="/detail/{{ employee.id }}">

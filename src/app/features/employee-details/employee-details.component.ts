@@ -119,7 +119,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
   onClose(): void {
     this.hideForm();
     this.employee = undefined;
-    this.location.back();
+    this.router.navigate(['/employees']);
     this.closed.emit();
   }
 
@@ -140,7 +140,9 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
   }
 
   onDelete(id: string | undefined) {
-    this.employeeService.deleteEmployee(id);
-    this.location.back();
+    this.employeeService.deleteEmployee(id).subscribe(() => {
+      this.location.back();
+    });
   }
+
 }
