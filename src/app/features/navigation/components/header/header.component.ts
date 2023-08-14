@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,22 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   title = 'CompetencyGrid';
+
+  isOpen = false;
+
+  constructor(private elRef: ElementRef) { }
+
+  toggleContent() {
+    this.isOpen = !this.isOpen;
+  }
+
+  hideContent() {
+    this.isOpen = false;
+  }
+
+  onClick(event: Event) {
+    if (!this.elRef.nativeElement.contains(event.target)) {
+      this.hideContent();
+    }
+  }
 }

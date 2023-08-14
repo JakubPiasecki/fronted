@@ -14,7 +14,7 @@ export class EmployeesComponent implements OnInit {
   employees: Employee[] = [];
   selectedEmployee?: Employee;
   destroyRef = inject(DestroyRef);
-  isLodaing = true;
+  isLoading = true;
 
   constructor(
     private employeeService: EmployeeService,
@@ -32,7 +32,7 @@ export class EmployeesComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((employees) => {
         this.employees = employees;
-        this.isLodaing = false;
+        this.isLoading = false;
       });
   }
 

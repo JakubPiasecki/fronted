@@ -1,9 +1,12 @@
-<header class="header">
+<header class="header" (document:click)="onClick($event)">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toggleContent(); $event.stopPropagation()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <h1 class="header__title">{{ title }}</h1>
-  <div class="header__content">
+  <div class="header__content" [class.open]="isOpen">
     <nav class="header__navigation">
-      <a class="header__link" routerLink="/dashboard">Dashboard</a>
-      <a class="header__link" routerLink="/employees">Employees</a>
+      <a class="header__link" routerLink="/dashboard" (click)="hideContent(); $event.stopPropagation()">Dashboard</a>
+      <a class="header__link" routerLink="/employees" (click)="hideContent(); $event.stopPropagation()">Employees</a>
     </nav>
   </div>
   <div class="header__utilities">
