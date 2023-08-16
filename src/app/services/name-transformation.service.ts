@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NameTransformationService {
-
-  constructor() { }
-
   toUpperCase(name: string): string {
     return name.toUpperCase();
   }

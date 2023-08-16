@@ -12,7 +12,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('EmployeesComponent', () => {
   let component: EmployeesComponent;
   let fixture: ComponentFixture<EmployeesComponent>;
-  let compiled: any;
+  let compiled: Element;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,14 +23,14 @@ describe('EmployeesComponent', () => {
           loader: {
             provide: TranslateLoader,
             useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
-            deps: [HttpClient]
-          }
+            deps: [HttpClient],
+          },
         }),
         MatListModule,
         MatProgressSpinnerModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      providers: [TranslateService]
+      providers: [TranslateService],
     });
     fixture = TestBed.createComponent(EmployeesComponent);
     component = fixture.componentInstance;
@@ -53,7 +53,7 @@ describe('EmployeesComponent', () => {
     component.isLoading = false;
     component.employees = [
       { id: '1', name: 'Jan', surname: '', hireDate: new Date(), skills: [], manager: '' },
-      { id: '2', name: 'Anna', surname: '', hireDate: new Date(), skills: [], manager: '' }
+      { id: '2', name: 'Anna', surname: '', hireDate: new Date(), skills: [], manager: '' },
     ];
     fixture.detectChanges();
     expect(compiled.querySelector('.employee-list__spinner')).toBeFalsy();
@@ -62,5 +62,4 @@ describe('EmployeesComponent', () => {
     expect(employeeItems[0].textContent).toContain('Jan');
     expect(employeeItems[1].textContent).toContain('Anna');
   });
-
 });

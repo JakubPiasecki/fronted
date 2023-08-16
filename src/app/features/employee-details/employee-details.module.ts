@@ -24,7 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDatepickerModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    TranslateModule
-  ]
+    TranslateModule,
+  ],
 })
 export class EmployeeDetailsModule {}

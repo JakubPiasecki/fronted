@@ -9,11 +9,11 @@ describe('MessageService', () => {
 
   beforeEach(() => {
     const translateServiceSpy = jasmine.createSpyObj('TranslateService', ['instant']);
-    translateServiceSpy.instant.and.callFake((key: any, param?: any) => {
+    translateServiceSpy.instant.and.callFake((key: string, param?: { [key: string]: string }) => {
       if (key === 'EmployeeService.fetched_employee') return 'Fetched employee';
       if (key === 'EmployeesComponent.selected_employee') {
-        if (param && param.id) {
-          return `Selected employee with id=${param.id}`;
+        if (param && param['id']) {
+          return `Selected employee with id=${param['id']}`;
         } else {
           return 'Selected employee with id=';
         }
@@ -21,11 +21,8 @@ describe('MessageService', () => {
       return key;
     });
 
-
     TestBed.configureTestingModule({
-      providers: [
-        { provide: TranslateService, useValue: translateServiceSpy },
-      ],
+      providers: [{ provide: TranslateService, useValue: translateServiceSpy }],
     });
 
     service = TestBed.inject(MessageService);
@@ -43,11 +40,11 @@ describe('MessageService', () => {
   });
 
   it('should get translated messages', () => {
-    const messageKey1 = 'EmployeeService.fetched_employee';
-    const messageKey2 = 'EmployeesComponent.selected_employee';
+    const fetchedEmployeeMessageKey = 'EmployeeService.fetched_employee';
+    const selectedEmployeeMessageKey = 'EmployeesComponent.selected_employee';
 
-    service.add(messageKey1);
-    service.add(messageKey2);
+    service.add(fetchedEmployeeMessageKey);
+    service.add(selectedEmployeeMessageKey);
 
     const translatedMessages = service.getTranslatedMessages();
     expect(translatedMessages).toEqual(['Fetched employee', 'Selected employee with id=']);
@@ -58,7 +55,7 @@ describe('MessageService', () => {
     const messageKey = 'EmployeesComponent.selected_employee';
     service.add(messageKey);
 
-    mockTranslateService.instant.and.callFake((key: any) => `Selected employee with id=123`);
+    mockTranslateService.instant.and.callFake(() => `Selected employee with id=123`);
 
     const translatedMessages = service.getTranslatedMessages();
     expect(translatedMessages).toEqual(['Selected employee with id=123']);

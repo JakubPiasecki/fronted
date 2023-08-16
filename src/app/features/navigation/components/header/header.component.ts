@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,19 +10,11 @@ export class HeaderComponent {
 
   isOpen = false;
 
-  constructor(private elRef: ElementRef) { }
-
   toggleContent() {
     this.isOpen = !this.isOpen;
   }
 
   hideContent() {
     this.isOpen = false;
-  }
-
-  onClick(event: Event) {
-    if (!this.elRef.nativeElement.contains(event.target)) {
-      this.hideContent();
-    }
   }
 }
