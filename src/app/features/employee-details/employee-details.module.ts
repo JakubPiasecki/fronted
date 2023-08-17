@@ -8,9 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [EmployeeDetailsComponent],
@@ -22,9 +22,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     MatSelectModule,
     MatDatepickerModule,
-    TranslateModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    TranslateModule,
   ],
 })
 export class EmployeeDetailsModule {}

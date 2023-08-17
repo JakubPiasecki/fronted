@@ -10,10 +10,11 @@
   margin: 0.625rem auto;
   border-radius: 0.625rem;
   color: $white;
+  position: relative;
 
   &__title {
     font-size: 2rem;
-    margin: 0;
+    margin: 0 -4.5rem 0 0;
     padding: 0.625rem;
     color: $rose-light;
   }
@@ -21,11 +22,35 @@
   &__content {
     color: $navy-dark;
     cursor: pointer;
+    transition:
+      transform 0.5s ease,
+      opacity 0.5s ease,
+      visibility 0.5s ease;
+    position: absolute;
+    margin-top: 0.1rem;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: $navy-darkest;
+    border-radius: 0.625rem;
+    z-index: 10;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    padding: 0;
+
+    &--open {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   &__navigation {
     color: $navy-light;
-    padding-left: 0.625rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
   }
 
   &__link {
@@ -34,22 +59,43 @@
     padding: 0.625rem;
     transition: background-color 0.3s ease;
     border-radius: 0.625rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
 
     &:hover {
       background-color: $navy-dark;
       border-radius: 0.625rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
 
 @media (max-width: $breakpoint-mobile) {
   .header {
-    width: 90%;
-    padding: 0 0.9375rem;
+    width: 85%;
+    padding: 0 0.5rem;
 
     &__title {
-      font-size: 1.5rem;
-      padding: 0.625rem;
+      font-size: 1.2rem;
+      margin: 0 -3.5rem 0 0;
+      padding: 0.5rem;
+    }
+
+    &__content {
+      padding: 0.5rem;
+    }
+
+    &__link {
+      padding: 0.5rem;
+      margin-bottom: 0.3rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

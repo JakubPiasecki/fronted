@@ -50,7 +50,11 @@
   "employee.dashboard": {
     "title": "New employees"
   },
-  "employee": {
+  "dashboard": {
     "search": "Employee search"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "employees": "Employees"
   }
 }

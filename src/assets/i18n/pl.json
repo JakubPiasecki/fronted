@@ -50,7 +50,11 @@
   "employee.dashboard": {
     "title": "Nowi pracownicy"
   },
-  "employee": {
+  "dashboard": {
     "search": "Wyszukaj pracownika"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "employees": "Pracownicy"
   }
 }

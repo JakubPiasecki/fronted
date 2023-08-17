@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   title = 'CompetencyGrid';
+
+  isOpen = false;
+
+  toggleContent() {
+    this.isOpen = !this.isOpen;
+  }
+
+  hideContent() {
+    this.isOpen = false;
+  }
 }
