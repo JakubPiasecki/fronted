@@ -4,12 +4,13 @@ import { Employee } from '../models/employee';
 import { MessageService } from './message.service';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private employeesUrl = 'api/employee';
+  private employeesUrl = environment.apiBaseUrl + '/employees'
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -28,7 +29,7 @@ export class EmployeeService {
     );
   }
 
-  getEmployee(id: string): Observable<Employee> {
+  getEmployee(id: string | null): Observable<Employee> {
     const url = `${this.employeesUrl}/${id}`;
     return this.http.get<Employee>(url).pipe(
       tap(() => this.messageService.add(`EmployeeService: fetched employee id=${id}`)),
@@ -45,18 +46,14 @@ export class EmployeeService {
   }
 
   createEmployee(newEmployee: Employee): Observable<Employee> {
-    return this.generateNewId().pipe(
-      switchMap((newId) => {
-        newEmployee.id = newId;
-        return this.http.post<Employee>(this.employeesUrl, newEmployee, this.httpOptions).pipe(
-          tap((createdEmployee: Employee) =>
-            this.messageService.add(`EmployeeService: added employee w/ id=${createdEmployee.id}`),
-          ),
-          catchError(this.handleError<Employee>('createEmployee')),
-        );
-      }),
+    return this.http.post<Employee>(this.employeesUrl, newEmployee, this.httpOptions).pipe(
+      tap((createdEmployee: Employee) =>
+        this.messageService.add(`EmployeeService: added employee w/ id=${createdEmployee.id}`),
+      ),
+      catchError(this.handleError<Employee>('createEmployee')),
     );
   }
+
 
   deleteEmployee(id: string | undefined): Observable<Employee> {
     const url = `${this.employeesUrl}/${id}`;
@@ -71,7 +68,7 @@ export class EmployeeService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
+    return this.http.get<Employee[]>(`${this.employeesUrl}?name=${term}`).pipe(
       tap((foundEmployees) =>
         foundEmployees.length
           ? this.messageService.add(`found employees matching "${term}"`)
@@ -97,15 +94,15 @@ export class EmployeeService {
     };
   }
 
-  private generateNewId(): Observable<string> {
-    return this.http.get<Employee[]>(this.employeesUrl).pipe(
-      map((employees) => {
-        const maxIdNumber = employees.reduce((max, emp) => (Number(emp.id) > max ? Number(emp.id) : max), 0);
-        const newIdNumber = maxIdNumber + 1;
-        return newIdNumber.toString();
-      }),
+  getSkills(): Observable<{id: number, name: string}[]> {
+    const skillsUrl = environment.apiBaseUrl + '/skills';
+    return this.http.get<{id: number, name: string}[]>(skillsUrl).pipe(
+      tap(() => this.log('fetched skills')),
+      catchError(this.handleError<{id: number, name: string}[]>('getSkills', []))
     );
   }
+
+
 }
 interface HttpError {
   message: string;
