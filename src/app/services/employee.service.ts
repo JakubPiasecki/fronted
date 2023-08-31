@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { Employee } from '../models/employee';
 import { MessageService } from './message.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,7 +29,7 @@ export class EmployeeService {
     );
   }
 
-  getEmployee(id: string | null): Observable<Employee> {
+  getEmployee(id: string): Observable<Employee> {
     const url = `${this.employeesUrl}/${id}`;
     return this.http.get<Employee>(url).pipe(
       tap(() => this.messageService.add(`EmployeeService: fetched employee id=${id}`)),

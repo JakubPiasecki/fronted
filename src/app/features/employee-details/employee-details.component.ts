@@ -7,20 +7,20 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../models/employee';
-import { SKILLS } from '../../mock/mock-skills';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { EmployeeService } from '../../services/employee.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Skill } from '../../models/skills';
 
 @Component({
   selector: 'app-employee-detail',
   templateUrl: './employee-details.component.html',
-  styleUrls: ['./employee-details.component.scss'],
+  styleUrls: ['./employee-details.component.scss']
 })
 export class EmployeeDetailsComponent implements OnInit, OnChanges {
   @Input() employee?: Employee;
@@ -30,7 +30,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
   @Output() newEmployeeCreated = new EventEmitter<Employee>();
   employeeForm!: FormGroup;
   isFormVisible = false;
-  availableSkills: { id: number; name: string }[] = [];
+  availableSkills: Skill[] = [];
   isCreatingNewEmployee = false;
   destroyRef = inject(DestroyRef);
   isLoading = true;
@@ -40,8 +40,9 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     private employeeService: EmployeeService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router,
-  ) {}
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
     this.getSkillsFromDatabase();
@@ -58,13 +59,15 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
 
   getEmployee(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.employeeService
-      .getEmployee(id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((employee) => {
-        this.employee = employee;
-        this.isLoading = false;
-      });
+    if (id !== null) {
+      this.employeeService
+        .getEmployee(id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((employee) => {
+          this.employee = employee;
+          this.isLoading = false;
+        });
+    }
   }
 
   getManagers(): void {
@@ -91,7 +94,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
       surname: [this.employee?.lastName || '', Validators.required],
       skills: [this.employee?.skillsIds || [], Validators.required],
       hireDate: [this.employee?.employmentDate ? new Date(this.employee.employmentDate) : null, Validators.required],
-      manager: [this.employee?.managerId || '', Validators.required],
+      manager: [this.employee?.managerId || '', Validators.required]
     });
   }
 
@@ -156,6 +159,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
       this.location.back();
     });
   }
+
   getSkillsFromDatabase(): void {
     this.employeeService.getSkills()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -167,7 +171,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
 
   getSkillNamesByIds(ids: string[]): string[] {
     return ids.map(id => {
-      const skill = this.availableSkills.find(s => s.id === +id);
+      const skill = this.availableSkills.find(s => s.id === parseInt(id));
       return skill ? skill.name : 'Unknown Skill';
     });
   }
