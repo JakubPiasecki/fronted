@@ -33,10 +33,10 @@ export class DashboardComponent implements OnInit {
       .pipe(
         map((employees) => {
           const employeesCopy = [...employees].map((emp) => {
-            emp.hireDate = new Date(emp.hireDate);
+            emp.employmentDate = new Date(emp.employmentDate);
             return emp;
           });
-          return employeesCopy.sort((a, b) => b.hireDate.getTime() - a.hireDate.getTime()).slice(0, 5);
+          return employeesCopy.sort((a, b) => b.employmentDate.getTime() - a.employmentDate.getTime()).slice(0, 5);
         }),
       )
       .pipe(takeUntilDestroyed(this.destroyRef))
