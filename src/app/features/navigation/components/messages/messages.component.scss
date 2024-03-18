@@ -1,0 +1,17 @@
+@import '../../../../../variables';
+
+.message-icon-btn {
+  &__icon {
+    color: $navy-light;
+  }
+}
+
+.message-menu {
+  &__button {
+    width: 100%;
+  }
+
+  &__title {
+    margin: 0;
+  }
+}

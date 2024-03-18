@@ -1,0 +1,76 @@
+@use '@angular/material' as mat;
+
+$breakpoint-mobile: 600px;
+
+$custom-pastel-navy-palette: (
+  50: #e5ebff,
+  100: #ccd8ff,
+  200: #b0c2ff,
+  300: #95acff,
+  400: #7d99ff,
+  500: #6685ff,
+  600: #5c78e0,
+  700: #5068c0,
+  800: #4459a0,
+  900: #394a80,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+$custom-pastel-rose-palette: (
+  50: #fffaf9,
+  100: #fff2f0,
+  200: #ffe5e1,
+  300: #ffd6d0,
+  400: #ffc9c3,
+  500: #ffbfb6,
+  600: #ffb3ae,
+  700: #ffa4a1,
+  800: #ff9694,
+  900: #ff8380,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+$my-primary: mat.define-palette($custom-pastel-navy-palette, 500);
+$my-accent: mat.define-palette($custom-pastel-rose-palette, 500);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+  )
+);
+
+$navy-lightest: map-get($custom-pastel-navy-palette, 50);
+$navy-light: map-get($custom-pastel-navy-palette, 100);
+$navy-medium: map-get($custom-pastel-navy-palette, 500);
+$navy-dark: map-get($custom-pastel-navy-palette, 700);
+$navy-darkest: map-get($custom-pastel-navy-palette, 900);
+
+$rose-lightest: map-get($custom-pastel-rose-palette, 50);
+$rose-light: map-get($custom-pastel-rose-palette, 100);
+
+$white: white;

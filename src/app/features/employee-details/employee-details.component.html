@@ -1,0 +1,78 @@
+<div class="employee-details">
+  <mat-spinner class="employee-details__spinner" *ngIf="isLoading; else employeeContent"></mat-spinner>
+  <ng-template #employeeContent>
+    <div *ngIf="employee" class="employee-details__content">
+      <mat-card class="employee-details__card">
+        <div *ngIf="!isFormVisible" class="employee-details__information">
+          <h2>{{ employee.firstName | uppercase }} {{ 'employee.list.details.title' | translate }}</h2>
+          <div>id: {{ employee.id }}</div>
+          <div>{{ 'employee.list.details.name' | translate }}: {{ employee.firstName }}</div>
+          <div>{{ 'employee.list.details.surname' | translate }}: {{ employee.lastName }}</div>
+          <div>{{ 'employee.list.details.skills' | translate }}: {{ getSkillNamesByIds(employee.skillsIds).join(', ') }}</div>
+          <div>{{ 'employee.list.details.hireDate' | translate }}: {{ employee.employmentDate.toString().slice(0, 10) }}</div>
+          <div>{{ 'employee.list.details.manager' | translate }}: {{ getManagerNameById(employee.managerId) }}</div>
+
+          <button mat-raised-button color="primary" class="employee-details__edit-button" (click)="onEdit()">
+            {{ 'employee.list.actions.edit' | translate }}
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            class="employee-details__delete-button"
+            (click)="onDelete(employee.id)"
+          >
+            {{ 'employee.list.actions.delete' | translate }}
+          </button>
+          <button mat-button class="employee-details__close-button" (click)="onClose()">
+            {{ 'employee.list.actions.close' | translate }}
+          </button>
+        </div>
+        <form *ngIf="isFormVisible" [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-details__form">
+          <mat-form-field class="employee-details__form-field">
+            <mat-label>{{ 'employee.list.form.labels.name' | translate }}</mat-label>
+            <input matInput id="name" formControlName="name" />
+          </mat-form-field>
+          <mat-form-field class="employee-details__form-field">
+            <mat-label>{{ 'employee.list.form.labels.surname' | translate }}</mat-label>
+            <input matInput id="surname" formControlName="surname" />
+          </mat-form-field>
+          <mat-form-field class="employee-details__form-field">
+            <mat-label>{{ 'employee.list.form.labels.skills' | translate }}</mat-label>
+            <mat-select id="skills" formControlName="skills" multiple>
+              <mat-option *ngFor="let skill of availableSkills" [value]="skill.id">{{ skill.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="employee-details__form-field">
+            <mat-label>{{ 'employee.list.form.labels.hireDate' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" id="hireDate" formControlName="hireDate" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="employee-details__form-field">
+            <mat-label>{{ 'employee.list.form.labels.manager' | translate }}</mat-label>
+            <mat-select id="manager" formControlName="manager">
+              <mat-option *ngFor="let manager of managers" [value]="manager.id">
+                {{ manager.firstName }} {{ manager.lastName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button
+            color="primary"
+            mat-raised-button
+            type="submit"
+            [disabled]="employeeForm.invalid"
+            class="employee-details__save-button"
+          >
+            {{ 'employee.list.form.buttons.save' | translate }}
+          </button>
+          <button mat-button type="button" class="employee-details__reset-button" (click)="onReset()">
+            {{ 'employee.list.form.buttons.reset' | translate }}
+          </button>
+          <button mat-button type="button" class="employee-details__close-form-button" (click)="onClose()">
+            {{ 'employee.list.form.buttons.close' | translate }}
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </ng-template>
+</div>

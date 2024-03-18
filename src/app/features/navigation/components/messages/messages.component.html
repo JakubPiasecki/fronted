@@ -1,0 +1,31 @@
+<button
+  mat-icon-button
+  class="message-icon-btn"
+  [matMenuTriggerFor]="messagesMenu"
+  [disabled]="messageService.messages.length === 0"
+>
+  <mat-icon
+    *ngIf="messageService.messages.length > 0"
+    class="message-icon-btn__icon"
+    matBadge="{{ messageService.messages.length }}"
+    matBadgeColor="accent"
+    matBadgeOverlap="false"
+    aria-hidden="false"
+    >mail
+  </mat-icon>
+  <mat-icon *ngIf="messageService.messages.length === 0" class="message-icon-btn__icon" aria-hidden="false"
+    >mail</mat-icon
+  >
+</button>
+
+<mat-menu #messagesMenu="matMenu" class="message-menu">
+  <h2 class="message-menu__title">{{ 'message.title' | translate }}</h2>
+  <button mat-raised-button color="primary" type="button" class="message-menu__button" (click)="messageService.clear()">
+    {{ 'message.clear' | translate }}
+  </button>
+  <div *ngIf="messageService.messages.length" class="message-menu__content">
+    <div *ngFor="let messageKey of messageService.getTranslatedMessages()" class="message-menu__item">
+      {{ messageKey | translate }}
+    </div>
+  </div>
+</mat-menu>

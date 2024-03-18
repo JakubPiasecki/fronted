@@ -1,0 +1,68 @@
+import { Employee } from '../models/employee';
+
+export const EMPLOYEES: Employee[] = [
+  {
+    id: '1',
+    firstName: 'Grzegorz',
+    lastName: 'Gregory',
+    skills: ['skill1', 'skill2'],
+    hireDate: new Date('2023-07-21'),
+    manager: '1',
+  },
+  {
+    id: '2',
+    firstName: 'Anna',
+    lastName: 'Ann',
+    skills: ['skill2', 'skill3'],
+    hireDate: new Date('2022-01-12'),
+    manager: '2',
+  },
+  {
+    id: '3',
+    firstName: 'John',
+    lastName: 'Doe',
+    skills: ['skill1', 'skill3'],
+    hireDate: new Date('2021-12-11'),
+    manager: '2',
+  },
+  {
+    id: '4',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    skills: ['skill2', 'skill1'],
+    hireDate: new Date('2022-03-13'),
+    manager: '4',
+  },
+  {
+    id: '5',
+    firstName: 'Robert',
+    lastName: 'Smith',
+    skills: ['skill3', 'skill2'],
+    hireDate: new Date('2022-02-22'),
+    manager: '3',
+  },
+  {
+    id: '6',
+    firstName: 'Emma',
+    lastName: 'Johnson',
+    skills: ['skill1', 'skill3'],
+    hireDate: new Date('2022-06-06'),
+    manager: '2',
+  },
+  {
+    id: '7',
+    firstName: 'Olivia',
+    lastName: 'Williams',
+    skills: ['skill2', 'skill3'],
+    hireDate: new Date('2021-11-01'),
+    manager: '1',
+  },
+  {
+    id: '8',
+    firstName: 'Michael',
+    lastName: 'Brown',
+    skills: ['skill3', 'skill1'],
+    hireDate: new Date('2023-01-03'),
+    manager: '4',
+  },
+];

@@ -1,0 +1,25 @@
+@import 'variables';
+
+:root {
+  font-size: 10px;
+}
+
+h2 {
+  text-align: center;
+  color: map-get($my-primary, 900);
+  font-size: 2rem;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

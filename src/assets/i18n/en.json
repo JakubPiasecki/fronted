@@ -1,0 +1,60 @@
+{
+  "employee.list": {
+    "button": {
+      "add": "Add Employee"
+    },
+    "details": {
+      "title": "Details",
+      "id": "Id",
+      "name": "Name",
+      "surname": "Surname",
+      "skills": "Skills",
+      "hireDate": "Hire Date",
+      "manager": "Manager"
+    },
+    "actions": {
+      "edit": "Edit",
+      "close": "Close",
+      "delete": "Delete"
+    },
+    "form": {
+      "labels": {
+        "name": "Employee Name",
+        "surname": "Employee Surname",
+        "skills": "Employee Skills",
+        "hireDate": "Employee Hire Date",
+        "manager": "Employee Manager"
+      },
+      "buttons": {
+        "save": "Save",
+        "reset": "Reset",
+        "close": "Close"
+      }
+    }
+  },
+  "translate": {
+    "polish": "Polish",
+    "english": "English"
+  },
+  "message": {
+    "title": "Messages",
+    "clear": "Clear messages"
+  },
+  "EmployeeService": {
+    "fetched_employee": "Fetched employee"
+  },
+  "EmployeesComponent": {
+    "selected_employee": "Selected employee with id={{id}}"
+  },
+  "languageChanged": "The language has been changed",
+  "employee.dashboard": {
+    "title": "New employees"
+  },
+  "dashboard": {
+    "search": "Employee search"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "employees": "Employees"
+  }
+}

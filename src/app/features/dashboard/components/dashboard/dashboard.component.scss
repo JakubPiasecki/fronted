@@ -1,0 +1,58 @@
+@import '../../../../../variables';
+
+.dashboard {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__employee-list {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__item {
+      width: 60%;
+      margin: 0.625rem auto;
+      display: flex;
+      justify-content: space-between;
+      background-color: $navy-light;
+      padding: 0.625rem;
+      border-radius: 0.3125rem;
+      transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $navy-medium;
+        color: $white;
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+    background-color: $white;
+
+    &:hover {
+      background-color: $white;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .dashboard {
+    &__employee-list {
+      &__item {
+        width: 90%;
+      }
+    }
+  }
+}

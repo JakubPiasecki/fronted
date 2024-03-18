@@ -1,0 +1,21 @@
+<header class="header">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="toggleContent()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 class="header__title">{{ title }}</h1>
+  <div class="header__content" [ngClass]="{ 'header__content--open': isOpen }">
+    <nav class="header__navigation">
+      <a class="header__link" routerLink="/dashboard" (click)="hideContent()">Dashboard</a>
+      <a class="header__link" routerLink="/employees" (click)="hideContent()">Employees</a>
+    </nav>
+  </div>
+  <div class="header__utilities">
+    <app-messages></app-messages>
+    <app-translate></app-translate>
+  </div>
+</header>

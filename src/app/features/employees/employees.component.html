@@ -1,0 +1,17 @@
+<mat-list class="employee-list">
+  <mat-spinner class="employee-list__spinner" *ngIf="isLoading; else employeeContent"> </mat-spinner>
+  <ng-template #employeeContent>
+    <mat-list-item
+      *ngFor="let employee of employees"
+      class="employee-list__item"
+      [ngClass]="{ 'employee-list__item--selected': selectedEmployee === employee }"
+      (click)="onSelect(employee)"
+      routerLink="/detail/{{ employee.id }}"
+    >
+      <div class="employee-list__content">
+        <span class="employee-list__id">{{ employee.id }}</span>
+        <span class="employee-list__name">{{ employee.firstName }}</span>
+      </div>
+    </mat-list-item>
+  </ng-template>
+</mat-list>

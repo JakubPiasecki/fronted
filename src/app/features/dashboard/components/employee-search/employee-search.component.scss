@@ -1,0 +1,60 @@
+@import '../../../../../variables';
+
+.employee-search {
+  width: 80%;
+  display: block;
+  padding: 0.5rem;
+  border: 0.5rem solid $navy-lightest;
+  border-radius: 0.5rem;
+  background-color: $white;
+  box-shadow: 0 0.125rem 0.5rem rgba($navy-darkest, 0.1);
+  margin: 0 auto;
+
+  &__field {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-infix {
+      border-top: none;
+      padding: 0.5rem 0;
+    }
+  }
+
+  &__input {
+    &::placeholder {
+      color: $navy-medium;
+    }
+
+    &:focus {
+      &::placeholder {
+        color: $navy-dark;
+      }
+    }
+  }
+
+  &__autocomplete {
+    .mat-option {
+      &:hover,
+      &:active {
+        background-color: $rose-lightest;
+      }
+
+      &.mat-selected {
+        background-color: $rose-light;
+      }
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: $rose-lightest;
+    }
+  }
+}

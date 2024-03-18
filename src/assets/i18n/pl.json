@@ -1,0 +1,60 @@
+{
+  "employee.list": {
+    "button": {
+      "add": "Dodaj Pracownika"
+    },
+    "details": {
+      "title": "Szczegóły",
+      "id": "Id",
+      "name": "Imię",
+      "surname": "Nazwisko",
+      "skills": "Umiejętności",
+      "hireDate": "Data Zatrudnienia",
+      "manager": "Manager"
+    },
+    "actions": {
+      "edit": "Edytuj",
+      "close": "Zamknij",
+      "delete": "Usuń"
+    },
+    "form": {
+      "labels": {
+        "name": "Imię Pracownika",
+        "surname": "Nazwisko Pracownika",
+        "skills": "Umiejętności Pracownika",
+        "hireDate": "Data Zatrudnienia Pracownika",
+        "manager": "Manager Pracownika"
+      },
+      "buttons": {
+        "save": "Zapisz",
+        "reset": "Zresetuj",
+        "close": "Zamknij"
+      }
+    }
+  },
+  "translate": {
+    "polish": "Polski",
+    "english": "Angielski"
+  },
+  "message": {
+    "title": "Wiadomości",
+    "clear": "Wyczyść wiadomości"
+  },
+  "EmployeeService": {
+    "fetched_employee": "Pobrano pracownika"
+  },
+  "EmployeesComponent": {
+    "selected_employee": "Wybrano pracownika o id={{id}}"
+  },
+  "languageChanged": "Język został zmieniony",
+  "employee.dashboard": {
+    "title": "Nowi pracownicy"
+  },
+  "dashboard": {
+    "search": "Wyszukaj pracownika"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "employees": "Pracownicy"
+  }
+}
